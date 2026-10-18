@@ -1,0 +1,43 @@
+{
+  "Common": {
+    "skipToContent": "Skip to content"
+  },
+  "Header": {
+    "dashboard": "Dashboard",
+    "language": "Language",
+    "signOut": "Sign out",
+    "signedInAs": "Signed in as {email}"
+  },
+  "Login": {
+    "title": "Sign in",
+    "intro": "Enter your email and we'll send you a sign-in link. No password needed.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "submit": "Email me a sign-in link",
+    "sending": "Sending…",
+    "sentTitle": "Check your email",
+    "sent": "We sent a sign-in link to {email}. Open it on this device to continue.",
+    "invalid": "Enter a valid email address.",
+    "error": "We couldn't send the link. Please try again in a minute.",
+    "linkError": "That sign-in link is invalid or has expired. Request a new one."
+  },
+  "Dashboard": {
+    "title": "Your watches",
+    "newWatch": "New watch",
+    "tiles": {
+      "activeWatches": "Active watches",
+      "drops7d": "Drops in 7 days",
+      "bestSaving": "Best saving vs. first seen",
+      "checksUsed": "Checks used this month"
+    },
+    "emptyTitle": "No watches yet",
+    "emptyBody": "Create a watch for a route and dates, and we'll email you when the price drops.",
+    "comingSoon": "Coming soon",
+    "loading": "Loading…",
+    "priceNote": "Prices are “from” prices. The final price is shown at checkout."
+  },
+  "Language": {
+    "en": "English",
+    "zh-TW": "繁體中文"
+  }
+}

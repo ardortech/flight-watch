@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* Design tokens (SPEC §7). Use these via Tailwind classes, e.g. bg-navy, text-amber, font-mono. */
+@theme {
+  --color-navy: #14202b;
+  --color-navy-soft: #1e2d3b;
+  --color-ground: #f3f4f1;
+  --color-ink: #14202b;
+  --color-muted: #5b6670;
+  --color-line: #d9dcd6;
+  --color-amber: #e8a33d;
+  --color-amber-strong: #d18f2a;
+  --color-low: #1f5fbf;
+  --color-low-bg: #dce8fa;
+  --color-high: #a8530f;
+  --color-high-bg: #fbe3cc;
+
+  --font-sans: var(--font-plex-sans), var(--font-noto-tc), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), var(--font-noto-tc), ui-monospace, monospace;
+}
+
+/* Chinese UI: put Noto Sans TC first so CJK glyphs and punctuation come from it. */
+html[lang="zh-TW"] {
+  --font-sans: var(--font-noto-tc), var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}

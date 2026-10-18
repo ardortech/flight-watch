@@ -1,0 +1,43 @@
+{
+  "Common": {
+    "skipToContent": "跳至主要內容"
+  },
+  "Header": {
+    "dashboard": "總覽",
+    "language": "語言",
+    "signOut": "登出",
+    "signedInAs": "已登入：{email}"
+  },
+  "Login": {
+    "title": "登入",
+    "intro": "輸入你的電子郵件，我們會寄送登入連結給你，不需要密碼。",
+    "emailLabel": "電子郵件",
+    "emailPlaceholder": "you@example.com",
+    "submit": "寄送登入連結",
+    "sending": "寄送中…",
+    "sentTitle": "請查看你的信箱",
+    "sent": "登入連結已寄到 {email}，請在這台裝置上開啟連結以繼續。",
+    "invalid": "請輸入有效的電子郵件地址。",
+    "error": "目前無法寄送連結，請稍候一分鐘再試。",
+    "linkError": "這個登入連結無效或已過期，請重新索取。"
+  },
+  "Dashboard": {
+    "title": "你的追蹤",
+    "newWatch": "新增追蹤",
+    "tiles": {
+      "activeWatches": "追蹤中",
+      "drops7d": "7 天內降價次數",
+      "bestSaving": "與首次價格相比最多省下",
+      "checksUsed": "本月已用查價次數"
+    },
+    "emptyTitle": "目前沒有追蹤",
+    "emptyBody": "為航線和日期建立追蹤，票價下降時我們會寄電子郵件通知你。",
+    "comingSoon": "即將推出",
+    "loading": "載入中…",
+    "priceNote": "顯示價格為「起」價，最終價格以結帳時為準。"
+  },
+  "Language": {
+    "en": "English",
+    "zh-TW": "繁體中文"
+  }
+}
