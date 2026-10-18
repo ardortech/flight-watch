@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<title>我的追蹤</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#174A94}a:hover{color:#0E2F62}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F3F4F1; color: #14202B; font-family: 'IBM Plex Sans', 'Noto Sans TC', sans-serif; font-size: 15px; line-height: 1.6">
+  <header style="background: #14202B; color: #F3F4F1">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l8-3 4-9 2 1-2 8 6-2 2 2-18 6z"></path><path d="M3 21h18"></path></svg>
+        <span>Flight Watch</span>
+        <span role="group" aria-label="語言 Language" style="margin-left: 12px; display: inline-flex; border: 1px solid #4A5B6C; border-radius: 999px; overflow: hidden; font-size: 13px; font-weight: 600"><a href="#" aria-current="true" style="padding: 6px 12px; background: #E8A33D; color: #14202B; text-decoration: none">中文</a><a href="Main.dc.html" lang="en" style="padding: 6px 12px; color: #C9D1D9; text-decoration: none">EN</a></span>
+      </div>
+      <nav aria-label="主選單" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px">
+        <a href="#" aria-current="page" style="color: #FFFFFF; text-decoration: none; padding: 10px 14px; border-radius: 8px; background: #26374A; font-weight: 600">我的追蹤</a>
+        <a href="TripsZh.dc.html" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">我的旅程</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">通知紀錄</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">設定</a>
+        <a href="NewWatchZh.dc.html" style="margin-left: 8px; display: inline-flex; align-items: center; gap: 6px; background: #E8A33D; color: #14202B; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 700">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          新增追蹤
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px">
+      <div>
+        <h1 style="margin: 0; font-size: 32px; line-height: 1.2">我的追蹤</h1>
+        <p style="margin: 6px 0 0; color: #4F5B66">系統會自動定時查價，價格一降就寄信通知你。</p>
+      </div>
+      <p style="margin: 0; color: #4F5B66; font-size: 13px">2 小時前查價 · 10 小時後再查</p>
+    </div>
+
+    <section aria-label="摘要" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+      <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 18px 20px">
+        <div style="color: #4F5B66; font-size: 13px">追蹤中</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; margin-top: 4px">{{ activeCount }}</div>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 18px 20px">
+        <div style="color: #4F5B66; font-size: 13px">近 7 天降價次數</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; margin-top: 4px">2</div>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 18px 20px">
+        <div style="color: #4F5B66; font-size: 13px">比初次查價最多省下</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; margin-top: 4px; color: #1D5BB8">US$220</div>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 18px 20px">
+        <div style="color: #4F5B66; font-size: 13px">本月已查價次數</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; margin-top: 4px">412</div>
+      </div>
+    </section>
+
+    <section aria-label="最新通知" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: #DCE8FA; border: 1px solid #B5CCF0; border-radius: 12px; padding: 16px 20px">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#174A94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+        <div>
+          <div style="font-weight: 700; color: #0E2F62">SFO ⇄ TPE 降價 US$86，現在 US$812</div>
+          <div style="color: #24466F; font-size: 14px">開始追蹤以來最低價 · Google 判定此行程價格偏低</div>
+        </div>
+      </div>
+      <a href="WatchDetailZh.dc.html" style="font-weight: 700; text-decoration: none; padding: 10px 14px; border-radius: 8px; background: #FFFFFF; color: #174A94; border: 1px solid #B5CCF0">查看詳情</a>
+    </section>
+
+    <section aria-label="追蹤清單" style="display: flex; flex-direction: column; gap: 12px">
+      <sc-if value="{{ hasUndo }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: #14202B; color: #F3F4F1; border-radius: 12px; padding: 10px 12px 10px 20px">
+          <span>已刪除 {{ undoRoute }}，不會再收到它的通知。</span>
+          <button type="button" onClick="{{ undo }}" style="font: inherit; font-weight: 700; min-height: 44px; padding: 8px 16px; border-radius: 8px; border: 1px solid #4A5B6C; background: transparent; color: #FFFFFF; cursor: pointer">復原</button>
+        </div>
+      </sc-if>
+
+      <sc-for list="{{ watches }}" as="w" hint-placeholder-count="3">
+        <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; overflow: hidden">
+          <div style="display: flex; align-items: stretch">
+            <a href="{{ w.href }}" style="flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; padding: 20px 24px; color: #14202B; text-decoration: none">
+              <div style="flex: 2 1 260px; min-width: 0">
+                <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; letter-spacing: 0.02em">{{ w.route }}</span>
+                  <span style="color: #4F5B66; font-size: 14px">{{ w.cities }}</span>
+                </div>
+                <div style="margin-top: 4px; font-size: 14px">{{ w.dates }}</div>
+                <div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px">
+                  <span style="font-size: 12px; padding: 3px 8px; border-radius: 999px; background: #EEF0EC; color: #3D4650">{{ w.filters }}</span>
+                  <span style="font-size: 12px; padding: 3px 8px; border-radius: 999px; background: #EEF0EC; color: #3D4650">{{ w.window }}</span>
+                </div>
+              </div>
+              <div style="flex: 1 1 140px">
+                <svg viewBox="0 0 140 40" width="140" height="40" role="img" aria-label="{{ w.sparkLabel }}"><polyline points="{{ w.spark }}" fill="none" stroke="#7A8794" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></polyline><circle cx="{{ w.lastX }}" cy="{{ w.lastY }}" r="3.5" fill="#14202B"></circle></svg>
+                <div style="font-size: 12px; color: #4F5B66">近 30 天</div>
+              </div>
+              <div style="flex: 1 1 160px; text-align: right">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; line-height: 1.1">{{ w.price }}</div>
+                <div style="font-size: 13px; color: #4F5B66">{{ w.priceNote }}</div>
+                <div style="margin-top: 6px; display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-wrap: wrap">
+                  <span style="{{ w.deltaStyle }}">{{ w.delta }}</span>
+                  <span style="{{ w.levelStyle }}">{{ w.level }}</span>
+                </div>
+              </div>
+            </a>
+            <div style="display: flex; align-items: center; padding: 0 10px; border-left: 1px solid #EEF0EC">
+              <button type="button" aria-label="{{ w.deleteLabel }}" title="刪除追蹤" onClick="{{ w.askDelete }}" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 8px; background: transparent; color: #6B7680; cursor: pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M10 11v6M14 11v6"></path><path d="M6 7l1 13h10l1-13"></path><path d="M9 7V4h6v3"></path></svg>
+              </button>
+            </div>
+          </div>
+          <sc-if value="{{ w.confirming }}" hint-placeholder-val="{{ false }}">
+            <div role="alertdialog" aria-label="{{ w.confirmLabel }}" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: #FBEDED; border-top: 1px solid #EBCACA; padding: 12px 16px 12px 24px">
+              <span style="color: #6E1F1F; font-size: 14px"><strong>確定刪除 {{ w.route }}？</strong>刪除後不會再收到通知，價格紀錄也會一併移除。</span>
+              <div style="display: flex; gap: 8px">
+                <button type="button" onClick="{{ w.cancelDelete }}" style="font: inherit; font-weight: 700; min-height: 44px; padding: 8px 16px; border-radius: 8px; border: 1px solid #C4CAC4; background: #FFFFFF; color: #14202B; cursor: pointer">取消</button>
+                <button type="button" onClick="{{ w.confirmDelete }}" style="font: inherit; font-weight: 700; min-height: 44px; padding: 8px 16px; border-radius: 8px; border: 0; background: #9A2B2B; color: #FFFFFF; cursor: pointer">刪除追蹤</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="background: #FFFFFF; border: 1px dashed #C4CAC4; border-radius: 12px; padding: 40px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px">
+          <div style="font-weight: 700; font-size: 18px">目前沒有追蹤</div>
+          <div style="color: #4F5B66">輸入航線和日期，我們會幫你盯著票價。</div>
+          <a href="NewWatchZh.dc.html" style="background: #14202B; color: #FFFFFF; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 700">新增追蹤</a>
+        </div>
+      </sc-if>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { deleted: [], confirming: null, lastDeleted: null };
+  }
+  spark(values) {
+    var min = Math.min.apply(null, values), max = Math.max.apply(null, values);
+    var span = (max - min) || 1;
+    var pts = values.map(function (v, i) {
+      var x = 4 + i * (132 / (values.length - 1));
+      var y = 6 + (1 - (v - min) / span) * 28;
+      return [Math.round(x * 10) / 10, Math.round(y * 10) / 10];
+    });
+    var last = pts[pts.length - 1];
+    return { points: pts.map(function (p) { return p.join(','); }).join(' '), x: last[0], y: last[1] };
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    var base = 'font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 999px';
+    var levels = {
+      low: base + '; background: #DCE8FA; color: #174A94',
+      typical: base + '; background: #E6E8E3; color: #3D4650',
+      high: base + '; background: #FBE3CC; color: #8A4510'
+    };
+    var deltaBase = "font-family: 'IBM Plex Mono', 'Noto Sans TC', monospace; font-size: 13px; font-weight: 600";
+    var raw = [
+      { id: 'tpe', route: 'SFO ⇄ TPE', cities: '舊金山 – 台北', dates: '12月18日 → 1月3日 · 16 晚', filters: '經濟艙 · 星空聯盟 · 最多轉機 1 次', window: '前後 7 天', price: 'US$812', priceNote: '來回 · 1 位成人', delta: '↓ US$86', dir: 'down', level: '價格偏低', lv: 'low', href: 'WatchDetailZh.dc.html',
+        hist: [1032,1018,1041,1025,998,1004,987,1012,995,976,968,981,959,944,962,950,931,918,940,925,904,912,898,905,889,876,898,871,898,812] },
+      { id: 'nrt', route: 'SFO ⇄ NRT', cities: '舊金山 – 東京', dates: '3月20日 → 3月29日 · 9 晚', filters: '豪華經濟艙 · 寰宇一家', window: '前後 3 天', price: 'US$1,146', priceNote: '來回 · 1 位成人', delta: '↑ US$38', dir: 'up', level: '一般', lv: 'typical', href: '#',
+        hist: [1180,1172,1165,1170,1158,1149,1160,1152,1141,1133,1138,1126,1131,1119,1124,1110,1118,1102,1115,1108,1096,1104,1099,1112,1105,1118,1109,1121,1108,1146] },
+      { id: 'jfk', route: 'SFO → JFK', cities: '舊金山 – 紐約', dates: '11月26日 · 單程', filters: '經濟艙 · 不限航空 · 直飛', window: '精確日期', price: 'US$289', priceNote: '單程 · 1 位成人', delta: '無變動', dir: 'flat', level: '價格偏高', lv: 'high', href: '#',
+        hist: [219,224,221,229,233,238,236,241,247,252,249,256,261,258,264,268,266,271,275,272,278,281,279,284,286,283,288,289,289,289] }
+    ];
+    var visible = raw.filter(function (w) { return s.deleted.indexOf(w.id) === -1; });
+    var watches = visible.map(function (w) {
+      var sp = self.spark(w.hist);
+      var color = w.dir === 'down' ? '#1D5BB8' : (w.dir === 'up' ? '#A8530F' : '#4F5B66');
+      return Object.assign({}, w, {
+        spark: sp.points, lastX: sp.x, lastY: sp.y,
+        sparkLabel: w.route + ' 近 30 天價格走勢',
+        deltaStyle: deltaBase + '; color: ' + color,
+        levelStyle: levels[w.lv],
+        deleteLabel: '刪除追蹤 ' + w.route,
+        confirmLabel: '確認刪除 ' + w.route,
+        confirming: s.confirming === w.id,
+        askDelete: function () { self.setState({ confirming: w.id }); },
+        cancelDelete: function () { self.setState({ confirming: null }); },
+        confirmDelete: function () { self.setState({ deleted: s.deleted.concat([w.id]), confirming: null, lastDeleted: w.id }); }
+      });
+    });
+    var undoItem = raw.filter(function (w) { return w.id === s.lastDeleted; })[0];
+    return {
+      watches: watches,
+      activeCount: watches.length,
+      isEmpty: watches.length === 0,
+      hasUndo: !!undoItem,
+      undoRoute: undoItem ? undoItem.route : '',
+      undo: function () {
+        self.setState({ deleted: s.deleted.filter(function (id) { return id !== s.lastDeleted; }), lastDeleted: null });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

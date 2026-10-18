@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SFO to TPE watch</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#174A94}a:hover{color:#0E2F62}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F3F4F1; color: #14202B; font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.5">
+  <header style="background: #14202B; color: #F3F4F1">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l8-3 4-9 2 1-2 8 6-2 2 2-18 6z"></path><path d="M3 21h18"></path></svg>
+        <span>Flight Watch</span>
+        <span role="group" aria-label="Language 語言" style="margin-left: 12px; display: inline-flex; border: 1px solid #4A5B6C; border-radius: 999px; overflow: hidden; font-size: 13px; font-weight: 600"><a href="WatchDetailZh.dc.html" lang="zh-Hant-TW" style="padding: 6px 12px; color: #C9D1D9; text-decoration: none">中文</a><a href="#" aria-current="true" style="padding: 6px 12px; background: #E8A33D; color: #14202B; text-decoration: none">EN</a></span>
+      </div>
+      <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 4px">
+        <a href="Main.dc.html" style="color: #FFFFFF; text-decoration: none; padding: 10px 14px; border-radius: 8px; background: #26374A; font-weight: 600">Watches</a>
+        <a href="Trips.dc.html" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Trips</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Alerts</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Settings</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 24px 32px 48px; display: flex; flex-direction: column; gap: 24px">
+    <a href="Main.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 500; padding: 8px 0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      All watches
+    </a>
+
+    <section style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+      <div style="flex: 3 1 480px; min-width: 0">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 40px; font-weight: 600; letter-spacing: 0.02em; line-height: 1.1">SFO ⇄ TPE</div>
+        <h1 style="margin: 6px 0 0; font-size: 20px; font-weight: 600">San Francisco to Taipei · Dec 18 → Jan 3</h1>
+        <div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px">
+          <span style="font-size: 13px; padding: 4px 10px; border-radius: 999px; background: #E6E8E3">Round trip · 16 nights</span>
+          <span style="font-size: 13px; padding: 4px 10px; border-radius: 999px; background: #E6E8E3">Economy · 1 adult</span>
+          <span style="font-size: 13px; padding: 4px 10px; border-radius: 999px; background: #E6E8E3">Star Alliance</span>
+          <span style="font-size: 13px; padding: 4px 10px; border-radius: 999px; background: #E6E8E3">≤1 stop</span>
+        </div>
+        <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px">
+          <a href="Booked.dc.html" style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; padding: 10px 16px; border-radius: 8px; background: #14202B; color: #FFFFFF; text-decoration: none">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>
+            I booked this
+          </a>
+          <button type="button" style="font: inherit; font-weight: 600; padding: 10px 16px; border-radius: 8px; border: 1px solid #C4CAC4; background: #FFFFFF; color: #14202B; cursor: pointer">Edit watch</button>
+          <button type="button" style="font: inherit; font-weight: 600; padding: 10px 16px; border-radius: 8px; border: 1px solid #C4CAC4; background: #FFFFFF; color: #14202B; cursor: pointer">Pause</button>
+          <button type="button" style="font: inherit; font-weight: 600; padding: 10px 16px; border-radius: 8px; border: 1px solid #E3C4C4; background: #FFFFFF; color: #9A2B2B; cursor: pointer">Delete</button>
+        </div>
+      </div>
+      <div style="flex: 2 1 320px; background: #14202B; color: #F3F4F1; border-radius: 14px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px">
+        <div style="color: #AEB8C2; font-size: 13px">Current lowest · checked 14 min ago</div>
+        <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 48px; font-weight: 600; line-height: 1">$812</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600; color: #8DB8F5">↓ $86 since last check</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+          <span style="font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 999px; background: #DCE8FA; color: #174A94">Low for this trip</span>
+          <span style="font-size: 13px; color: #C9D1D9">Typical $890–$1,140 (Google Flights)</span>
+        </div>
+        <div style="font-size: 13px; color: #C9D1D9">First seen $1,032 · lowest seen $812 · your target $800</div>
+        <a href="#" style="margin-top: 6px; align-self: flex-start; background: #E8A33D; color: #14202B; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 600">See booking options</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="nearby-h" style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 24px">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px">
+        <div>
+          <h2 id="nearby-h" style="margin: 0; font-size: 20px">Nearby dates</h2>
+          <p style="margin: 4px 0 0; color: #4F5B66; font-size: 14px">Same 16-night trip, shifted earlier or later. Round-trip price per date.</p>
+        </div>
+        <div role="group" aria-label="Date window" style="display: inline-flex; background: #EEF0EC; border-radius: 10px; padding: 4px; gap: 4px">
+          <sc-for list="{{ windows }}" as="opt" hint-placeholder-count="3">
+            <button type="button" aria-pressed="{{ opt.pressed }}" onClick="{{ opt.pick }}" style="{{ opt.style }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: #F3F4F1; font-size: 14px">{{ insight }}</div>
+
+      <div style="margin-top: 20px; overflow-x: auto">
+        <div style="display: flex; align-items: flex-end; gap: 8px; min-width: 560px; height: 300px; padding-bottom: 4px; border-bottom: 1px solid #C4CAC4">
+          <sc-for list="{{ bars }}" as="b" hint-placeholder-count="15">
+            <div style="flex: 1 1 0; min-width: 30px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 6px">
+              <span style="{{ b.priceStyle }}">{{ b.price }}</span>
+              <div title="{{ b.title }}" style="{{ b.barStyle }}"></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 8px; min-width: 560px; margin-top: 8px">
+          <sc-for list="{{ bars }}" as="b" hint-placeholder-count="15">
+            <div style="flex: 1 1 0; min-width: 30px; text-align: center; font-size: 12px; line-height: 1.3">
+              <div style="{{ b.dateStyle }}">{{ b.date }}</div>
+              <div style="color: #6B7680">{{ b.dow }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 18px; font-size: 13px; color: #4F5B66">
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #14202B"></span>Your dates</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #1F5FBF"></span>Cheapest in window</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #B9C3CC"></span>Other dates</span>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+      <div aria-labelledby="hist-h" role="region" style="flex: 3 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 24px">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+          <div>
+            <h2 id="hist-h" style="margin: 0; font-size: 20px">Price over time</h2>
+            <p style="margin: 2px 0 0; color: #4F5B66; font-size: 14px">{{ histSummary }}</p>
+          </div>
+          <button type="button" aria-expanded="{{ histExpanded }}" aria-controls="hist-body" onClick="{{ toggleHist }}" style="font: inherit; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 8px; border: 1px solid #C4CAC4; background: #FFFFFF; color: #14202B; cursor: pointer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="{{ chevronStyle }}"><path d="M6 9l6 6 6-6"></path></svg>
+            {{ histBtnLabel }}
+          </button>
+        </div>
+        <sc-if value="{{ showHist }}" hint-placeholder-val="{{ false }}">
+        <div id="hist-body">
+        <p style="margin: 16px 0 12px; color: #4F5B66; font-size: 14px">Your dates, last 30 days. Shaded band is Google's typical range for this trip.</p>
+        <svg viewBox="0 0 640 240" width="100%" role="img" aria-label="Price fell from $1,032 thirty days ago to $812 today, now below the typical range of $890 to $1,140">
+          <rect x="56" y="{{ bandY }}" width="568" height="{{ bandH }}" fill="#DCE8FA"></rect>
+          <line x1="56" y1="{{ targetY }}" x2="624" y2="{{ targetY }}" stroke="#E8A33D" stroke-width="1.5" stroke-dasharray="5 4"></line>
+          <text x="620" y="{{ targetLabelY }}" text-anchor="end" font-size="12" fill="#8A4510" font-family="IBM Plex Sans, sans-serif">Target $800</text>
+          <sc-for list="{{ yTicks }}" as="t" hint-placeholder-count="4">
+            <text x="48" y="{{ t.y }}" text-anchor="end" font-size="12" fill="#6B7680" font-family="IBM Plex Mono, monospace">{{ t.label }}</text>
+          </sc-for>
+          <polyline points="{{ histPoints }}" fill="none" stroke="#14202B" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          <circle cx="{{ lastX }}" cy="{{ lastY }}" r="5" fill="#1F5FBF" stroke="#FFFFFF" stroke-width="2"></circle>
+          <text x="56" y="234" font-size="12" fill="#6B7680" font-family="IBM Plex Sans, sans-serif">Sep 13</text>
+          <text x="624" y="234" text-anchor="end" font-size="12" fill="#6B7680" font-family="IBM Plex Sans, sans-serif">Today</text>
+        </svg>
+        </div>
+        </sc-if>
+      </div>
+
+      <form aria-labelledby="rules-h" style="flex: 2 1 320px; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <h2 id="rules-h" style="margin: 0; font-size: 20px">Alert me when</h2>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="target" style="font-size: 14px; font-weight: 500">Price is below</label>
+          <div style="display: flex; align-items: center; border: 1px solid #C4CAC4; border-radius: 8px; overflow: hidden">
+            <span style="padding: 10px 12px; background: #EEF0EC; font-family: 'IBM Plex Mono', monospace">$</span>
+            <input id="target" type="number" defaultValue="800" style="flex: 1; min-width: 0; border: 0; padding: 10px 12px; font: inherit; font-family: 'IBM Plex Mono', monospace">
+          </div>
+        </div>
+        <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; min-height: 44px"><input type="checkbox" defaultChecked="{{ true }}" style="width: 18px; height: 18px; margin-top: 2px">Price drops by $50 or 5% since the last alert</label>
+        <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; min-height: 44px"><input type="checkbox" defaultChecked="{{ true }}" style="width: 18px; height: 18px; margin-top: 2px">It's the lowest price I've seen for this watch</label>
+        <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; min-height: 44px"><input type="checkbox" defaultChecked="{{ true }}" style="width: 18px; height: 18px; margin-top: 2px">Google rates the price as low</label>
+        <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; min-height: 44px"><input type="checkbox" style="width: 18px; height: 18px; margin-top: 2px">A nearby date is cheaper than mine by $50+</label>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="cooldown" style="font-size: 14px; font-weight: 500">At most one alert every</label>
+          <select id="cooldown" defaultValue="12" style="font: inherit; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px; background: #FFFFFF">
+            <option value="6">6 hours</option>
+            <option value="12">12 hours</option>
+            <option value="24">24 hours</option>
+          </select>
+        </div>
+        <div style="font-size: 13px; color: #4F5B66">Sent to your email · 2 alerts so far</div>
+      </form>
+    </section>
+
+    <section aria-labelledby="opts-h" style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 24px">
+      <h2 id="opts-h" style="margin: 0 0 14px; font-size: 20px">Cheapest options for your dates</h2>
+      <div style="overflow-x: auto">
+        <table style="width: 100%; min-width: 620px; border-collapse: collapse; font-size: 14px">
+          <thead>
+            <tr style="text-align: left; color: #4F5B66; border-bottom: 1px solid #DDE1DC">
+              <th scope="col" style="padding: 10px 8px; font-weight: 500">Airline</th>
+              <th scope="col" style="padding: 10px 8px; font-weight: 500">Flights</th>
+              <th scope="col" style="padding: 10px 8px; font-weight: 500">Stops</th>
+              <th scope="col" style="padding: 10px 8px; font-weight: 500">Outbound</th>
+              <th scope="col" style="padding: 10px 8px; font-weight: 500; text-align: right">Price</th>
+              <th scope="col" style="padding: 10px 8px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Book</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ options }}" as="o" hint-placeholder-count="3">
+              <tr style="border-bottom: 1px solid #EEF0EC">
+                <td style="padding: 12px 8px; font-weight: 600">{{ o.airline }}</td>
+                <td style="padding: 12px 8px; font-family: 'IBM Plex Mono', monospace">{{ o.flights }}</td>
+                <td style="padding: 12px 8px">{{ o.stops }}</td>
+                <td style="padding: 12px 8px">{{ o.time }}</td>
+                <td style="padding: 12px 8px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-weight: 600">{{ o.price }}</td>
+                <td style="padding: 8px; text-align: right"><a href="#" style="display: inline-block; padding: 8px 14px; border-radius: 8px; border: 1px solid #C4CAC4; text-decoration: none; font-weight: 600; color: #14202B">Book</a></td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin: 12px 0 0; font-size: 12px; color: #6B7680">Prices change often; the airline or agency shows the final price at checkout.</p>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1960}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { win: 7, showHist: false };
+  }
+  renderVals() {
+    var self = this;
+    var win = this.state.win;
+    var days = [
+      ['Dec 11','Thu',968],['Dec 12','Fri',945],['Dec 13','Sat',902],['Dec 14','Sun',884],['Dec 15','Mon',788],
+      ['Dec 16','Tue',931],['Dec 17','Wed',876],['Dec 18','Thu',812],['Dec 19','Fri',845],['Dec 20','Sat',899],
+      ['Dec 21','Sun',1050],['Dec 22','Mon',1120],['Dec 23','Tue',1184],['Dec 24','Wed',1240],['Dec 25','Thu',1312]
+    ];
+    var visible = days.map(function (d, i) { return { date: d[0], dow: d[1], p: d[2], off: i - 7 }; })
+      .filter(function (d) { return Math.abs(d.off) <= win; });
+    var min = Math.min.apply(null, visible.map(function (d) { return d.p; }));
+    var bars = visible.map(function (d) {
+      var isTarget = d.off === 0;
+      var isMin = d.p === min && !isTarget;
+      var color = isTarget ? '#14202B' : (isMin ? '#1F5FBF' : '#B9C3CC');
+      var h = Math.round(40 + (d.p - 700) / (1350 - 700) * 210);
+      return {
+        date: d.date, dow: d.dow,
+        price: '$' + d.p.toLocaleString('en-US'),
+        title: d.date + ': $' + d.p,
+        barStyle: 'width: 100%; max-width: 56px; height: ' + h + 'px; border-radius: 6px 6px 0 0; background: ' + color,
+        priceStyle: "font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: " + ((isTarget || isMin) ? '700' : '500') + '; color: ' + (isMin ? '#174A94' : '#14202B'),
+        dateStyle: isTarget ? 'font-weight: 700' : 'font-weight: 500'
+      };
+    });
+    var cheapest = visible.filter(function (d) { return d.p === min; })[0];
+    var insight = win === 0
+      ? 'Tracking your exact dates only. Switch to ±3 or ±7 to compare nearby departures.'
+      : (cheapest.off === 0
+        ? 'Your dates are the cheapest in this window.'
+        : 'Leaving ' + cheapest.date + ' (returning 16 nights later) is $' + (812 - cheapest.p) + ' cheaper than your dates.');
+    var windows = [0, 3, 7].map(function (w) {
+      var on = w === win;
+      return {
+        label: w === 0 ? 'Exact' : '±' + w + ' days',
+        pressed: on ? 'true' : 'false',
+        pick: function () { self.setState({ win: w }); },
+        style: 'font: inherit; font-size: 14px; font-weight: 600; min-height: 40px; padding: 8px 14px; border-radius: 8px; border: 0; cursor: pointer; background: ' + (on ? '#14202B' : 'transparent') + '; color: ' + (on ? '#FFFFFF' : '#3D4650')
+      };
+    });
+
+    var hist = [1032,1018,1041,1025,998,1004,987,1012,995,976,968,981,959,944,962,950,931,918,940,925,904,912,898,905,889,876,898,871,898,812];
+    var lo = 750, hi = 1150;
+    function y(p) { return Math.round((12 + (1 - (p - lo) / (hi - lo)) * 196) * 10) / 10; }
+    var pts = hist.map(function (p, i) { return [Math.round((56 + i * (568 / (hist.length - 1))) * 10) / 10, y(p)]; });
+    var last = pts[pts.length - 1];
+    var bandTop = y(1140), bandBottom = y(890);
+    var showHist = this.state.showHist;
+    return {
+      showHist: showHist,
+      histExpanded: showHist ? 'true' : 'false',
+      histBtnLabel: showHist ? 'Hide chart' : 'Show chart',
+      histSummary: 'Down $220 from $1,032 over 30 days · now below the typical range',
+      chevronStyle: 'transition: transform 0.15s; transform: rotate(' + (showHist ? '180' : '0') + 'deg)',
+      toggleHist: function () { self.setState({ showHist: !showHist }); },
+      windows: windows, bars: bars, insight: insight,
+      histPoints: pts.map(function (p) { return p.join(','); }).join(' '),
+      lastX: last[0], lastY: last[1],
+      bandY: bandTop, bandH: Math.round((bandBottom - bandTop) * 10) / 10,
+      targetY: y(800), targetLabelY: y(800) + 16,
+      yTicks: [800, 900, 1000, 1100].map(function (v) { return { y: y(v) + 4, label: '$' + v.toLocaleString('en-US') }; }),
+      options: [
+        { airline: 'EVA Air', flights: 'BR 17 / BR 18', stops: 'Nonstop', time: '1:20 am → 6:25 am +1', price: '$812' },
+        { airline: 'United', flights: 'UA 871 / UA 872', stops: 'Nonstop', time: '10:40 am → 4:05 pm +1', price: '$846' },
+        { airline: 'ANA', flights: 'NH 7 / NH 853', stops: '1 stop · HND', time: '11:30 am → 11:10 pm +1', price: '$905' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

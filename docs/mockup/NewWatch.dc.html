@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New watch</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#174A94}a:hover{color:#0E2F62}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F3F4F1; color: #14202B; font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.5">
+  <header style="background: #14202B; color: #F3F4F1">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l8-3 4-9 2 1-2 8 6-2 2 2-18 6z"></path><path d="M3 21h18"></path></svg>
+        <span>Flight Watch</span>
+        <span role="group" aria-label="Language 語言" style="margin-left: 12px; display: inline-flex; border: 1px solid #4A5B6C; border-radius: 999px; overflow: hidden; font-size: 13px; font-weight: 600"><a href="NewWatchZh.dc.html" lang="zh-Hant-TW" style="padding: 6px 12px; color: #C9D1D9; text-decoration: none">中文</a><a href="#" aria-current="true" style="padding: 6px 12px; background: #E8A33D; color: #14202B; text-decoration: none">EN</a></span>
+      </div>
+      <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 4px">
+        <a href="Main.dc.html" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Watches</a>
+        <a href="Trips.dc.html" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Trips</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Alerts</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Settings</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 24px 32px 48px; display: flex; flex-direction: column; gap: 20px">
+    <a href="Main.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 500; padding: 8px 0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      Cancel
+    </a>
+    <h1 style="margin: 0; font-size: 32px; letter-spacing: -0.02em; line-height: 1.15">New watch</h1>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+      <form style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 26px">
+
+        <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px">
+          <legend style="font-size: 18px; font-weight: 600; padding: 0; margin-bottom: 12px">Trip</legend>
+          <div role="group" aria-label="Trip type" style="display: inline-flex; align-self: flex-start; background: #EEF0EC; border-radius: 10px; padding: 4px; gap: 4px">
+            <sc-for list="{{ trips }}" as="t" hint-placeholder-count="2">
+              <button type="button" aria-pressed="{{ t.pressed }}" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+            </sc-for>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="from" style="font-size: 14px; font-weight: 500">From</label>
+              <input id="from" type="text" defaultValue="SFO · San Francisco" style="font: inherit; padding: 11px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="to" style="font-size: 14px; font-weight: 500">To</label>
+              <input id="to" type="text" defaultValue="TPE · Taipei Taoyuan" style="font: inherit; padding: 11px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="depart" style="font-size: 14px; font-weight: 500">Depart</label>
+              <input id="depart" type="date" defaultValue="2026-12-18" style="font: inherit; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+            </div>
+            <sc-if value="{{ isRound }}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <label for="return" style="font-size: 14px; font-weight: 500">Return</label>
+                <input id="return" type="date" defaultValue="2027-01-03" style="font: inherit; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+              </div>
+            </sc-if>
+          </div>
+        </fieldset>
+
+        <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+          <legend style="font-size: 18px; font-weight: 600; padding: 0; margin-bottom: 4px">How flexible are your dates?</legend>
+          <p style="margin: 0; color: #4F5B66; font-size: 14px">We'll also check nearby departures with the same trip length and chart them side by side.</p>
+          <div role="group" aria-label="Date window" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+            <sc-for list="{{ windows }}" as="w" hint-placeholder-count="3">
+              <button type="button" aria-pressed="{{ w.pressed }}" onClick="{{ w.pick }}" style="{{ w.style }}">
+                <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600">{{ w.label }}</span>
+                <span style="display: block; font-size: 13px; font-weight: 400; margin-top: 2px">{{ w.sub }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </fieldset>
+
+        <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+          <legend style="font-size: 18px; font-weight: 600; padding: 0; margin-bottom: 4px">Airlines</legend>
+          <div role="group" aria-label="Airline preference" style="display: flex; flex-wrap: wrap; gap: 8px">
+            <sc-for list="{{ alliances }}" as="a" hint-placeholder-count="5">
+              <button type="button" aria-pressed="{{ a.pressed }}" onClick="{{ a.pick }}" style="{{ a.style }}">{{ a.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ isSpecific }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 4px">
+              <label for="airlines" style="font-size: 14px; font-weight: 500">Airline codes</label>
+              <input id="airlines" type="text" placeholder="e.g. BR, CI, UA" style="font: inherit; padding: 11px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+            </div>
+          </sc-if>
+        </fieldset>
+
+        <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+          <legend style="font-size: 18px; font-weight: 600; padding: 0; margin-bottom: 4px">Details</legend>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="cabin" style="font-size: 14px; font-weight: 500">Cabin</label>
+              <select id="cabin" defaultValue="economy" style="font: inherit; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px; background: #FFFFFF">
+                <option value="economy">Economy</option>
+                <option value="premium">Premium economy</option>
+                <option value="business">Business</option>
+                <option value="first">First</option>
+              </select>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="pax" style="font-size: 14px; font-weight: 500">Adults</label>
+              <input id="pax" type="number" min="1" max="9" defaultValue="1" style="font: inherit; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="stops" style="font-size: 14px; font-weight: 500">Stops</label>
+              <select id="stops" defaultValue="1" style="font: inherit; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px; background: #FFFFFF">
+                <option value="any">Any</option>
+                <option value="0">Nonstop only</option>
+                <option value="1">1 stop or fewer</option>
+              </select>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="currency" style="font-size: 14px; font-weight: 500">Currency</label>
+              <select id="currency" defaultValue="USD" onChange="{{ pickCurrency }}" style="font: inherit; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px; background: #FFFFFF">
+                <sc-for list="{{ currencies }}" as="c" hint-placeholder-count="10">
+                  <option value="{{ c.code }}">{{ c.label }}</option>
+                </sc-for>
+              </select>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="freq" style="font-size: 14px; font-weight: 500">Check my dates every</label>
+              <select id="freq" defaultValue="12" onChange="{{ pickFreq }}" style="font: inherit; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px; background: #FFFFFF">
+                <option value="6">6 hours</option>
+                <option value="12">12 hours (default)</option>
+                <option value="24">24 hours</option>
+              </select>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="target" style="font-size: 14px; font-weight: 500">Alert below (optional)</label>
+              <div style="display: flex; align-items: center; border: 1px solid #C4CAC4; border-radius: 8px; overflow: hidden">
+                <span style="padding: 10px 12px; background: #EEF0EC; font-family: 'IBM Plex Mono', monospace">{{ curSymbol }}</span>
+                <input id="target" type="number" defaultValue="800" style="flex: 1; min-width: 0; border: 0; padding: 10px 12px; font: inherit">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 6px; border-top: 1px solid #EEF0EC">
+          <a href="WatchDetail.dc.html" style="margin-top: 14px; background: #14202B; color: #FFFFFF; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 600">Start watching</a>
+          <a href="Main.dc.html" style="margin-top: 14px; color: #14202B; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; border: 1px solid #C4CAC4">Cancel</a>
+        </div>
+      </form>
+
+      <aside aria-labelledby="sum-h" style="flex: 1 1 280px; background: #14202B; color: #F3F4F1; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <h2 id="sum-h" style="margin: 0; font-size: 18px">What we'll track</h2>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; line-height: 1.2">{{ routeLabel }}</div>
+        <dl style="margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: 14px">
+          <dt style="color: #AEB8C2">Dates</dt><dd style="margin: 0">{{ datesLabel }}</dd>
+          <dt style="color: #AEB8C2">Window</dt><dd style="margin: 0">{{ windowLabel }}</dd>
+          <dt style="color: #AEB8C2">Airlines</dt><dd style="margin: 0">{{ allianceLabel }}</dd>
+          <dt style="color: #AEB8C2">Cabin</dt><dd style="margin: 0">Economy · 1 adult · ≤1 stop</dd>
+          <dt style="color: #AEB8C2">Currency</dt><dd style="margin: 0">{{ currencyLabel }}</dd>
+        </dl>
+        <div style="border-top: 1px solid #33465A; padding-top: 14px; display: flex; flex-direction: column; gap: 4px">
+          <div style="color: #AEB8C2; font-size: 13px">Checks per month (estimate)</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600">{{ checks }}</div>
+          <div style="color: #C9D1D9; font-size: 13px">{{ freqNote }}</div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { trip: 'round', win: 7, alliance: 'star', currency: 'USD', freq: 12 };
+  }
+  seg(on) {
+    return 'font: inherit; font-size: 14px; font-weight: 600; min-height: 40px; padding: 8px 16px; border-radius: 8px; border: 0; cursor: pointer; background: ' + (on ? '#14202B' : 'transparent') + '; color: ' + (on ? '#FFFFFF' : '#3D4650');
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    var trips = [['round', 'Round trip'], ['oneway', 'One way']].map(function (t) {
+      return { label: t[1], pressed: s.trip === t[0] ? 'true' : 'false', style: self.seg(s.trip === t[0]), pick: function () { self.setState({ trip: t[0] }); } };
+    });
+    var windows = [[0, 'Exact', '1 date'], [3, '±3 days', '7 dates'], [7, '±7 days', '15 dates']].map(function (w) {
+      var on = s.win === w[0];
+      return {
+        label: w[1], sub: w[2], pressed: on ? 'true' : 'false',
+        pick: function () { self.setState({ win: w[0] }); },
+        style: 'font: inherit; text-align: left; min-height: 64px; padding: 12px 14px; border-radius: 10px; cursor: pointer; border: 2px solid ' + (on ? '#14202B' : '#DDE1DC') + '; background: ' + (on ? '#F3F4F1' : '#FFFFFF') + '; color: #14202B'
+      };
+    });
+    var allianceList = [['any', 'Any airline'], ['star', 'Star Alliance'], ['oneworld', 'oneworld'], ['skyteam', 'SkyTeam'], ['specific', 'Specific airlines']];
+    var alliances = allianceList.map(function (a) {
+      var on = s.alliance === a[0];
+      return {
+        label: a[1], pressed: on ? 'true' : 'false',
+        pick: function () { self.setState({ alliance: a[0] }); },
+        style: 'font: inherit; font-size: 14px; font-weight: 600; min-height: 44px; padding: 8px 16px; border-radius: 999px; cursor: pointer; border: 1px solid ' + (on ? '#14202B' : '#C4CAC4') + '; background: ' + (on ? '#14202B' : '#FFFFFF') + '; color: ' + (on ? '#FFFFFF' : '#14202B')
+      };
+    });
+    var currencyList = [
+      ['USD', 'US$', 'US dollar'], ['TWD', 'NT$', 'New Taiwan dollar'], ['JPY', '¥', 'Japanese yen'], ['EUR', '€', 'Euro'],
+      ['GBP', '£', 'British pound'], ['HKD', 'HK$', 'Hong Kong dollar'], ['SGD', 'S$', 'Singapore dollar'],
+      ['CAD', 'CA$', 'Canadian dollar'], ['AUD', 'A$', 'Australian dollar'], ['KRW', '₩', 'Korean won']
+    ];
+    var cur = currencyList.filter(function (c) { return c[0] === s.currency; })[0];
+    var dates = s.win * 2 + 1;
+    var checks = (24 / s.freq) * 30 + (dates - 1) * 30;
+    var allianceLabel = allianceList.filter(function (a) { return a[0] === s.alliance; })[0][1];
+    return {
+      currencies: currencyList.map(function (c) { return { code: c[0], label: c[0] + ' · ' + c[2] }; }),
+      pickCurrency: function (e) { self.setState({ currency: e.target.value }); },
+      pickFreq: function (e) { self.setState({ freq: parseInt(e.target.value, 10) }); },
+      curSymbol: cur[1],
+      currencyLabel: cur[0] + ' (' + cur[1] + ')',
+      freqNote: (s.win === 0 ? 'Your dates every ' + s.freq + ' hours.' : 'Your dates every ' + s.freq + ' hours; nearby dates once a day.') + ' Checks slow down when departure is far away.',
+      trips: trips, windows: windows, alliances: alliances,
+      isRound: s.trip === 'round',
+      isSpecific: s.alliance === 'specific',
+      routeLabel: s.trip === 'round' ? 'SFO ⇄ TPE' : 'SFO → TPE',
+      datesLabel: s.trip === 'round' ? 'Dec 18 → Jan 3 (16 nights)' : 'Dec 18',
+      windowLabel: s.win === 0 ? 'Exact dates only' : '±' + s.win + ' days · ' + dates + ' dates',
+      allianceLabel: allianceLabel,
+      checks: '≈' + checks
+    };
+  }
+}
+</script>
+</body>
+</html>

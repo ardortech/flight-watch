@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Price drop email</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#174A94}a:hover{color:#0E2F62}
+</style>
+</helmet>
+<div style="width: 640px; height: 1000px; box-sizing: border-box; background: #E6E8E3; padding: 32px 20px; font-family: 'IBM Plex Sans', sans-serif; color: #14202B; font-size: 15px; line-height: 1.5">
+  <div style="max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 0">
+    <div style="font-size: 13px; color: #4F5B66; padding: 0 4px 12px">Subject: <strong style="color: #14202B">↓ SFO ⇄ TPE now $812 (−$86)</strong></div>
+
+    <div style="background: #14202B; color: #F3F4F1; border-radius: 14px 14px 0 0; padding: 22px 28px; display: flex; align-items: center; gap: 10px; font-weight: 700">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l8-3 4-9 2 1-2 8 6-2 2 2-18 6z"></path><path d="M3 21h18"></path></svg>
+      Flight Watch
+    </div>
+
+    <div style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+      <div>
+        <div style="color: #4F5B66; font-size: 14px">Price drop on your watch</div>
+        <h1 style="margin: 4px 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 30px; letter-spacing: 0.02em">SFO ⇄ TPE</h1>
+        <div style="font-size: 15px">Dec 18 → Jan 3 · Economy · Star Alliance</div>
+      </div>
+
+      <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 44px; font-weight: 600; line-height: 1">$812</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; color: #6B7680; text-decoration: line-through">$898</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600; color: #1D5BB8">−$86</span>
+      </div>
+
+      <div style="background: #F3F4F1; border-radius: 10px; padding: 16px 18px">
+        <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px">Why you're getting this</div>
+        <ul style="margin: 0; padding-left: 18px; font-size: 14px; display: flex; flex-direction: column; gap: 4px">
+          <li>Dropped more than $50 since your last alert</li>
+          <li>Lowest price since you started watching (Sep 13)</li>
+          <li>Google rates it low · typical $890–$1,140</li>
+        </ul>
+      </div>
+
+      <div>
+        <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px">Nearby dates</div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px">
+          <tbody>
+            <tr style="border-bottom: 1px solid #EEF0EC">
+              <td style="padding: 8px 0">Leave Dec 15 · Mon</td>
+              <td style="padding: 8px 0; text-align: right; font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: #174A94">$788 · cheapest</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #EEF0EC">
+              <td style="padding: 8px 0; font-weight: 600">Leave Dec 18 · Thu (yours)</td>
+              <td style="padding: 8px 0; text-align: right; font-family: 'IBM Plex Mono', monospace; font-weight: 600">$812</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0">Leave Dec 19 · Fri</td>
+              <td style="padding: 8px 0; text-align: right; font-family: 'IBM Plex Mono', monospace">$845</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 10px">
+        <a href="WatchDetail.dc.html" style="background: #14202B; color: #FFFFFF; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 600">View price chart</a>
+        <a href="#" style="background: #E8A33D; color: #14202B; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 600">Book EVA Air · $812</a>
+      </div>
+      <p style="margin: 0; font-size: 12px; color: #6B7680">Fares change quickly; the final price is shown at checkout.</p>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 1px solid #EEF0EC; border-radius: 0 0 14px 14px; padding: 16px 28px; font-size: 12px; color: #6B7680">
+      You're getting at most one alert every 12 hours for this watch. <a href="#">Change alert rules</a> · <a href="#">Pause this watch</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":640,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

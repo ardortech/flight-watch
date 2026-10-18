@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>I booked this</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#174A94}a:hover{color:#0E2F62}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #5E666D; color: #14202B; font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.5; padding: 48px 16px; box-sizing: border-box; display: flex; justify-content: center; align-items: flex-start">
+  <div role="dialog" aria-modal="true" aria-labelledby="booked-h" style="width: 100%; max-width: 640px; background: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(20, 32, 43, 0.35)">
+    <div style="background: #14202B; color: #F3F4F1; padding: 22px 28px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px">
+      <div>
+        <div style="font-size: 13px; color: #AEB8C2">From your watch</div>
+        <h1 id="booked-h" style="margin: 2px 0 0; font-size: 24px">You booked SFO ⇄ TPE</h1>
+        <div style="font-size: 14px; color: #C9D1D9">Dec 18 → Jan 3 · Economy · 1 adult</div>
+      </div>
+      <a href="WatchDetail.dc.html" aria-label="Close" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; color: #F3F4F1">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </a>
+    </div>
+
+    <form style="padding: 24px 28px; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="tname" style="font-size: 14px; font-weight: 500">Trip name</label>
+        <input id="tname" type="text" defaultValue="Taipei for New Year" style="font: inherit; padding: 11px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="paid" style="font-size: 14px; font-weight: 500">Price you paid</label>
+          <div style="display: flex; align-items: center; border: 1px solid #C4CAC4; border-radius: 8px; overflow: hidden">
+            <span style="padding: 10px 12px; background: #EEF0EC; font-family: 'IBM Plex Mono', monospace">US$</span>
+            <input id="paid" type="number" value="{{ paid }}" onChange="{{ setPaid }}" style="flex: 1; min-width: 0; border: 0; padding: 10px 12px; font: inherit; font-family: 'IBM Plex Mono', monospace">
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="via" style="font-size: 14px; font-weight: 500">Booked on</label>
+          <select id="via" defaultValue="airline" style="font: inherit; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px; background: #FFFFFF">
+            <option value="airline">Airline website or app</option>
+            <option value="ota">Online travel agency</option>
+            <option value="agent">Travel agent</option>
+            <option value="points">Points or miles</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="background: {{ savedBg }}; border-radius: 10px; padding: 12px 14px; font-size: 14px; color: {{ savedColor }}">{{ savedText }}</div>
+
+      <fieldset style="border: 1px solid #EEF0EC; border-radius: 12px; margin: 0; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+        <legend style="font-size: 14px; font-weight: 600; padding: 0 6px">Flights (from the cheapest option, edit if different)</legend>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="out" style="font-size: 13px; color: #4F5B66">Outbound flight</label>
+            <input id="out" type="text" defaultValue="BR 17 · Dec 18" style="font: inherit; font-family: 'IBM Plex Mono', monospace; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="ret" style="font-size: 13px; color: #4F5B66">Return flight</label>
+            <input id="ret" type="text" defaultValue="BR 18 · Jan 3" style="font: inherit; font-family: 'IBM Plex Mono', monospace; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+          </div>
+        </div>
+      </fieldset>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="conf" style="font-size: 14px; font-weight: 500">Confirmation code (optional)</label>
+          <input id="conf" type="text" placeholder="e.g. K7Q2XM" style="font: inherit; font-family: 'IBM Plex Mono', monospace; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="ffp" style="font-size: 14px; font-weight: 500">Miles go to (optional)</label>
+          <input id="ffp" type="text" placeholder="e.g. United MileagePlus" style="font: inherit; padding: 10px 12px; border: 1px solid #C4CAC4; border-radius: 8px">
+        </div>
+      </div>
+
+      <div style="border: 1px solid #DDE1DC; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+          <div>
+            <div style="font-weight: 600">Keep watching after booking</div>
+            <div style="font-size: 13px; color: #4F5B66">Email me if the price drops below what I paid.</div>
+          </div>
+          <button type="button" role="switch" aria-checked="{{ keepStr }}" aria-label="Keep watching after booking" onClick="{{ toggleKeep }}" style="{{ switchStyle }}"><span style="width: 24px; height: 24px; border-radius: 999px; background: #FFFFFF; display: block"></span></button>
+        </div>
+        <sc-if value="{{ keep }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 14px">
+            <label for="thr">Alert when it's at least</label>
+            <select id="thr" defaultValue="50" style="font: inherit; padding: 8px 10px; border: 1px solid #C4CAC4; border-radius: 8px; background: #FFFFFF">
+              <option value="25">US$25</option>
+              <option value="50">US$50</option>
+              <option value="100">US$100</option>
+            </select>
+            <span>below what I paid</span>
+          </div>
+          <div style="font-size: 12px; color: #6B7680">Checks your dates every 12 hours until departure. Some fares let you rebook or get a credit when the price drops; check your fare rules.</div>
+        </sc-if>
+        <sc-if value="{{ stop }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: 13px; color: #4F5B66">The watch will stop checking. Its price history stays with the trip.</div>
+        </sc-if>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; padding-top: 4px">
+        <a href="WatchDetail.dc.html" style="color: #14202B; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; border: 1px solid #C4CAC4">Cancel</a>
+        <a href="TripDetail.dc.html" style="background: #14202B; color: #FFFFFF; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 600">Save trip</a>
+      </div>
+    </form>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { keep: true, paid: 812 };
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    var first = 1032;
+    var diff = first - (Number(s.paid) || 0);
+    var saved = diff > 0;
+    return {
+      paid: s.paid,
+      setPaid: function (e) { self.setState({ paid: e.target.value }); },
+      savedText: saved ? 'You saved US$' + diff + ' compared with the first price we saw (US$1,032 on Sep 13).' : 'You paid US$' + Math.abs(diff) + ' more than the first price we saw (US$1,032). It happens: fares often rise close to the date.',
+      savedBg: saved ? '#DCE8FA' : '#FBE3CC',
+      savedColor: saved ? '#0E2F62' : '#6B3510',
+      keep: s.keep, stop: !s.keep, keepStr: s.keep ? 'true' : 'false',
+      toggleKeep: function () { self.setState({ keep: !s.keep }); },
+      switchStyle: 'flex: 0 0 auto; width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; cursor: pointer; display: flex; justify-content: ' + (s.keep ? 'flex-end' : 'flex-start') + '; background: ' + (s.keep ? '#14202B' : '#B9C3CC')
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Your watches</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#174A94}a:hover{color:#0E2F62}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F3F4F1; color: #14202B; font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.5">
+  <header style="background: #14202B; color: #F3F4F1">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -0.01em">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l8-3 4-9 2 1-2 8 6-2 2 2-18 6z"></path><path d="M3 21h18"></path></svg>
+        <span>Flight Watch</span>
+        <span role="group" aria-label="Language 語言" style="margin-left: 12px; display: inline-flex; border: 1px solid #4A5B6C; border-radius: 999px; overflow: hidden; font-size: 13px; font-weight: 600"><a href="MainZh.dc.html" lang="zh-Hant-TW" style="padding: 6px 12px; color: #C9D1D9; text-decoration: none">中文</a><a href="#" aria-current="true" style="padding: 6px 12px; background: #E8A33D; color: #14202B; text-decoration: none">EN</a></span>
+      </div>
+      <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px">
+        <a href="#" aria-current="page" style="color: #FFFFFF; text-decoration: none; padding: 10px 14px; border-radius: 8px; background: #26374A; font-weight: 600">Watches</a>
+        <a href="Trips.dc.html" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Trips</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Alerts</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Settings</a>
+        <a href="NewWatch.dc.html" style="margin-left: 8px; display: inline-flex; align-items: center; gap: 6px; background: #E8A33D; color: #14202B; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 600">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          New watch
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px">
+      <div>
+        <h1 style="margin: 0; font-size: 32px; line-height: 1.15; letter-spacing: -0.02em">Your watches</h1>
+        <p style="margin: 6px 0 0; color: #4F5B66">Prices are re-checked automatically. You'll get an email when one drops.</p>
+      </div>
+      <p style="margin: 0; color: #4F5B66; font-family: 'IBM Plex Mono', monospace; font-size: 13px">Last check 2 h ago · next in 10 h</p>
+    </div>
+
+    <section aria-label="Summary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+      <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 18px 20px">
+        <div style="color: #4F5B66; font-size: 13px">Active watches</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; margin-top: 4px">{{ activeCount }}</div>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 18px 20px">
+        <div style="color: #4F5B66; font-size: 13px">Price drops · last 7 days</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; margin-top: 4px">2</div>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 18px 20px">
+        <div style="color: #4F5B66; font-size: 13px">Best saving vs. first seen</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; margin-top: 4px; color: #1D5BB8">−$220</div>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 18px 20px">
+        <div style="color: #4F5B66; font-size: 13px">Checks used this month</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; margin-top: 4px">412</div>
+      </div>
+    </section>
+
+    <section aria-label="Latest alert" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: #DCE8FA; border: 1px solid #B5CCF0; border-radius: 12px; padding: 16px 20px">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#174A94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+        <div>
+          <div style="font-weight: 600; color: #0E2F62">SFO ⇄ TPE dropped $86 to $812</div>
+          <div style="color: #24466F; font-size: 14px">Lowest since you started watching · Google rates it low for this trip</div>
+        </div>
+      </div>
+      <a href="WatchDetail.dc.html" style="font-weight: 600; text-decoration: none; padding: 10px 14px; border-radius: 8px; background: #FFFFFF; color: #174A94; border: 1px solid #B5CCF0">View watch</a>
+    </section>
+
+    <section aria-label="Watches" style="display: flex; flex-direction: column; gap: 12px">
+      <sc-if value="{{ hasUndo }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: #14202B; color: #F3F4F1; border-radius: 12px; padding: 10px 12px 10px 20px">
+          <span>Deleted {{ undoRoute }}. Alerts for it have stopped.</span>
+          <button type="button" onClick="{{ undo }}" style="font: inherit; font-weight: 600; min-height: 44px; padding: 8px 16px; border-radius: 8px; border: 1px solid #4A5B6C; background: transparent; color: #FFFFFF; cursor: pointer">Undo</button>
+        </div>
+      </sc-if>
+
+      <sc-for list="{{ watches }}" as="w" hint-placeholder-count="3">
+        <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; overflow: hidden">
+          <div style="display: flex; align-items: stretch">
+            <a href="{{ w.href }}" style="flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; padding: 20px 24px; color: #14202B; text-decoration: none">
+              <div style="flex: 2 1 260px; min-width: 0">
+                <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; letter-spacing: 0.02em">{{ w.route }}</span>
+                  <span style="color: #4F5B66; font-size: 14px">{{ w.cities }}</span>
+                </div>
+                <div style="margin-top: 4px; font-size: 14px">{{ w.dates }}</div>
+                <div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px">
+                  <span style="font-size: 12px; padding: 3px 8px; border-radius: 999px; background: #EEF0EC; color: #3D4650">{{ w.filters }}</span>
+                  <span style="font-size: 12px; padding: 3px 8px; border-radius: 999px; background: #EEF0EC; color: #3D4650; font-family: 'IBM Plex Mono', monospace">{{ w.window }}</span>
+                </div>
+              </div>
+              <div style="flex: 1 1 140px">
+                <svg viewBox="0 0 140 40" width="140" height="40" role="img" aria-label="{{ w.sparkLabel }}"><polyline points="{{ w.spark }}" fill="none" stroke="#7A8794" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></polyline><circle cx="{{ w.lastX }}" cy="{{ w.lastY }}" r="3.5" fill="#14202B"></circle></svg>
+                <div style="font-size: 12px; color: #4F5B66">Last 30 days</div>
+              </div>
+              <div style="flex: 1 1 160px; text-align: right">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; line-height: 1.1">{{ w.price }}</div>
+                <div style="font-size: 13px; color: #4F5B66">{{ w.priceNote }}</div>
+                <div style="margin-top: 6px; display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-wrap: wrap">
+                  <span style="{{ w.deltaStyle }}">{{ w.delta }}</span>
+                  <span style="{{ w.levelStyle }}">{{ w.level }}</span>
+                </div>
+              </div>
+            </a>
+            <div style="display: flex; align-items: center; padding: 0 10px; border-left: 1px solid #EEF0EC">
+              <button type="button" aria-label="{{ w.deleteLabel }}" title="Delete watch" onClick="{{ w.askDelete }}" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 8px; background: transparent; color: #6B7680; cursor: pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M10 11v6M14 11v6"></path><path d="M6 7l1 13h10l1-13"></path><path d="M9 7V4h6v3"></path></svg>
+              </button>
+            </div>
+          </div>
+          <sc-if value="{{ w.confirming }}" hint-placeholder-val="{{ false }}">
+            <div role="alertdialog" aria-label="{{ w.confirmLabel }}" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: #FBEDED; border-top: 1px solid #EBCACA; padding: 12px 16px 12px 24px">
+              <span style="color: #6E1F1F; font-size: 14px"><strong>Delete {{ w.route }}?</strong> You'll stop getting alerts and its price history will be removed.</span>
+              <div style="display: flex; gap: 8px">
+                <button type="button" onClick="{{ w.cancelDelete }}" style="font: inherit; font-weight: 600; min-height: 44px; padding: 8px 16px; border-radius: 8px; border: 1px solid #C4CAC4; background: #FFFFFF; color: #14202B; cursor: pointer">Cancel</button>
+                <button type="button" onClick="{{ w.confirmDelete }}" style="font: inherit; font-weight: 600; min-height: 44px; padding: 8px 16px; border-radius: 8px; border: 0; background: #9A2B2B; color: #FFFFFF; cursor: pointer">Delete watch</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="background: #FFFFFF; border: 1px dashed #C4CAC4; border-radius: 12px; padding: 40px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px">
+          <div style="font-weight: 600; font-size: 18px">No watches yet</div>
+          <div style="color: #4F5B66">Add a route and dates, and we'll check the price for you.</div>
+          <a href="NewWatch.dc.html" style="background: #14202B; color: #FFFFFF; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 600">New watch</a>
+        </div>
+      </sc-if>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { deleted: [], confirming: null, lastDeleted: null };
+  }
+  spark(values) {
+    var min = Math.min.apply(null, values), max = Math.max.apply(null, values);
+    var span = (max - min) || 1;
+    var pts = values.map(function (v, i) {
+      var x = 4 + i * (132 / (values.length - 1));
+      var y = 6 + (1 - (v - min) / span) * 28;
+      return [Math.round(x * 10) / 10, Math.round(y * 10) / 10];
+    });
+    var last = pts[pts.length - 1];
+    return { points: pts.map(function (p) { return p.join(','); }).join(' '), x: last[0], y: last[1] };
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    var base = 'font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 999px';
+    var levels = {
+      Low: base + '; background: #DCE8FA; color: #174A94',
+      Typical: base + '; background: #E6E8E3; color: #3D4650',
+      High: base + '; background: #FBE3CC; color: #8A4510'
+    };
+    var deltaBase = "font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600";
+    var raw = [
+      { id: 'tpe', route: 'SFO ⇄ TPE', cities: 'San Francisco – Taipei', dates: 'Dec 18 → Jan 3 · 16 nights', filters: 'Economy · Star Alliance · ≤1 stop', window: '±7 days', price: '$812', priceNote: 'round trip · 1 adult', delta: '↓ $86', dir: 'down', level: 'Low', href: 'WatchDetail.dc.html',
+        hist: [1032,1018,1041,1025,998,1004,987,1012,995,976,968,981,959,944,962,950,931,918,940,925,904,912,898,905,889,876,898,871,898,812] },
+      { id: 'nrt', route: 'SFO ⇄ NRT', cities: 'San Francisco – Tokyo', dates: 'Mar 20 → Mar 29 · 9 nights', filters: 'Premium economy · oneworld', window: '±3 days', price: '$1,146', priceNote: 'round trip · 1 adult', delta: '↑ $38', dir: 'up', level: 'Typical', href: '#',
+        hist: [1180,1172,1165,1170,1158,1149,1160,1152,1141,1133,1138,1126,1131,1119,1124,1110,1118,1102,1115,1108,1096,1104,1099,1112,1105,1118,1109,1121,1108,1146] },
+      { id: 'jfk', route: 'SFO → JFK', cities: 'San Francisco – New York', dates: 'Nov 26 · one way', filters: 'Economy · any airline · nonstop', window: 'Exact date', price: '$289', priceNote: 'one way · 1 adult', delta: 'no change', dir: 'flat', level: 'High', href: '#',
+        hist: [219,224,221,229,233,238,236,241,247,252,249,256,261,258,264,268,266,271,275,272,278,281,279,284,286,283,288,289,289,289] }
+    ];
+    var visible = raw.filter(function (w) { return s.deleted.indexOf(w.id) === -1; });
+    var watches = visible.map(function (w) {
+      var sp = self.spark(w.hist);
+      var color = w.dir === 'down' ? '#1D5BB8' : (w.dir === 'up' ? '#A8530F' : '#4F5B66');
+      return Object.assign({}, w, {
+        spark: sp.points, lastX: sp.x, lastY: sp.y,
+        sparkLabel: 'Price trend for ' + w.route + ' over the last 30 days',
+        deltaStyle: deltaBase + '; color: ' + color,
+        levelStyle: levels[w.level],
+        deleteLabel: 'Delete watch ' + w.route,
+        confirmLabel: 'Confirm deleting ' + w.route,
+        confirming: s.confirming === w.id,
+        askDelete: function () { self.setState({ confirming: w.id }); },
+        cancelDelete: function () { self.setState({ confirming: null }); },
+        confirmDelete: function () { self.setState({ deleted: s.deleted.concat([w.id]), confirming: null, lastDeleted: w.id }); }
+      });
+    });
+    var undoItem = raw.filter(function (w) { return w.id === s.lastDeleted; })[0];
+    return {
+      watches: watches,
+      activeCount: watches.length,
+      isEmpty: watches.length === 0,
+      hasUndo: !!undoItem,
+      undoRoute: undoItem ? undoItem.route : '',
+      undo: function () {
+        self.setState({ deleted: s.deleted.filter(function (id) { return id !== s.lastDeleted; }), lastDeleted: null });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
