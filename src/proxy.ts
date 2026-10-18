@@ -2,6 +2,7 @@ import createIntlMiddleware from "next-intl/middleware";
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { routing } from "@/i18n/routing";
+import { magicLinkCleanup } from "@/lib/auth/magic-link";
 
 const handleI18nRouting = createIntlMiddleware(routing);
 
@@ -9,6 +10,12 @@ const handleI18nRouting = createIntlMiddleware(routing);
 const PUBLIC_PATHS = ["/login"];
 
 export async function proxy(request: NextRequest) {
+  // A magic link that lands on a page instead of /auth/callback (Supabase falls back to the Site URL
+  // when the callback isn't on its redirect allow-list) leaves ?code=…&locale=… in the address bar.
+  // Send it through the callback, which signs in and redirects to a clean URL.
+  const cleanup = magicLinkCleanup(new URL(request.url));
+  if (cleanup) return NextResponse.redirect(cleanup);
+
   const response = handleI18nRouting(request);
 
   // next-intl is redirecting (e.g. `/` → `/en`); let that happen first.

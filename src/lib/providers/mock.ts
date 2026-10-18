@@ -3,14 +3,15 @@ import type { FareQuery, FareResult, InsightProvider, Insights, PriceProvider } 
 /**
  * Deterministic fake prices for development and tests. The same query always
  * returns the same price, so nothing is billed while building the app.
- * Results are reported as source "ignav" because the mock stands in for Ignav.
+ * Results are labelled source "mock" so they can never be mistaken for (or
+ * compared with) real Ignav prices.
  */
 export class MockProvider implements PriceProvider, InsightProvider {
   async searchLowest(q: FareQuery): Promise<FareResult> {
     const price = mockPrice(q);
     const airline = MOCK_CARRIERS[hash(`${q.origin}${q.destination}`) % MOCK_CARRIERS.length];
     return {
-      source: "ignav",
+      source: "mock",
       price,
       currency: q.currency,
       airline,

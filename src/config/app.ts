@@ -1,2 +1,2 @@
-/** Working product name. Change it here only. */
-export const APP_NAME = "Fare Monitor";
+/** Product name. Change it here only. */
+export const APP_NAME = "Flight Watch";

@@ -1,9 +1,9 @@
-# Fare Monitor
+# Flight Watch
 
 Watches flight prices and emails you when they drop. See [SPEC.md](SPEC.md) for the full build spec.
 The product name lives in `src/config/app.ts`.
 
-**Status:** phase 1 (Scaffold): Next.js + next-intl (`en`, `zh-TW`), Supabase schema + RLS, magic-link sign-in, design tokens, header, empty dashboard.
+**Status:** phase 2 (Watches CRUD): new-watch form with airport autocomplete, dashboard cards, watch detail shell, edit, pause, soft delete + Undo.
 
 ## Stack
 
@@ -18,8 +18,11 @@ Next.js 16 (App Router, `cacheComponents`) · TypeScript · Tailwind CSS v4 · n
 | `src/proxy.ts` | Locale routing (next-intl), session refresh, and sign-in gate |
 | `src/i18n/` + `messages/*.json` | Locale config and UI strings |
 | `src/lib/supabase/` | Server/browser Supabase clients |
-| `src/lib/providers/` | Price provider layer (`PRICE_PROVIDER=mock\|ignav`); `MockProvider` is deterministic and free |
-| `supabase/migrations/` | Schema, RLS policies, `handle_new_user` trigger (creates `profiles` rows) |
+| `src/lib/providers/` | Price provider layer (`PRICE_PROVIDER=mock\|ignav`); `MockProvider` is deterministic, free, and labels its results `mock` |
+| `src/lib/watches/` | Watch options, form validation, formatting, airport search, data access |
+| `src/lib/actions/watches.ts` | Server actions: create / edit, pause, soft delete, Undo |
+| `src/components/watch-form/` | New / Edit watch form and airport autocomplete |
+| `supabase/migrations/` | Schema, RLS policies, `handle_new_user` trigger (creates `profiles` rows), airports + seed (299 airports, OurAirports coordinates, hand-written Chinese names) |
 
 ## Local development
 

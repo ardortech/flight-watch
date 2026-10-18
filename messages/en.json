@@ -1,12 +1,26 @@
 {
   "Common": {
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "comingSoon": "Coming soon",
+    "priceNote": "Prices are “from” prices. The final price is shown at checkout.",
+    "loading": "Loading…"
   },
   "Header": {
-    "dashboard": "Dashboard",
+    "mainNav": "Main menu",
+    "watches": "Watches",
+    "trips": "Trips",
+    "alerts": "Alerts",
+    "settings": "Settings",
+    "newWatch": "New watch",
     "language": "Language",
     "signOut": "Sign out",
     "signedInAs": "Signed in as {email}"
+  },
+  "Language": {
+    "en": "EN",
+    "zh-TW": "中文",
+    "nameEn": "English",
+    "nameZh-TW": "繁體中文"
   },
   "Login": {
     "title": "Sign in",
@@ -23,21 +37,186 @@
   },
   "Dashboard": {
     "title": "Your watches",
-    "newWatch": "New watch",
+    "intro": "Prices are re-checked automatically. You'll get an email when one drops.",
+    "summary": "Summary",
+    "list": "Your watches",
     "tiles": {
       "activeWatches": "Active watches",
-      "drops7d": "Drops in 7 days",
+      "drops7d": "Price drops · last 7 days",
       "bestSaving": "Best saving vs. first seen",
       "checksUsed": "Checks used this month"
     },
     "emptyTitle": "No watches yet",
-    "emptyBody": "Create a watch for a route and dates, and we'll email you when the price drops.",
-    "comingSoon": "Coming soon",
-    "loading": "Loading…",
-    "priceNote": "Prices are “from” prices. The final price is shown at checkout."
+    "emptyBody": "Add a route and dates, and we'll check the price for you.",
+    "emptyCta": "New watch",
+    "awaitingPrice": "Waiting for first check",
+    "noTrendYet": "Price trend appears after a few checks",
+    "paused": "Paused",
+    "deleteLabel": "Delete watch {route}",
+    "deleteTitle": "Delete watch",
+    "confirmLabel": "Confirm deleting {route}",
+    "confirmQuestion": "Delete {route}?",
+    "confirmBody": "You'll stop getting alerts and its price history will be removed.",
+    "cancel": "Cancel",
+    "confirmDelete": "Delete watch",
+    "deleted": "Deleted {route}. Alerts for it have stopped.",
+    "undo": "Undo",
+    "dismiss": "Dismiss",
+    "deleteFailed": "Couldn't delete {route}. Please try again.",
+    "undoFailed": "Couldn't restore {route}. Please try again."
   },
-  "Language": {
-    "en": "English",
-    "zh-TW": "繁體中文"
+  "Watch": {
+    "tripType": {
+      "round": "Round trip",
+      "oneway": "One way"
+    },
+    "cabin": {
+      "economy": "Economy",
+      "premium_economy": "Premium economy",
+      "business": "Business",
+      "first": "First"
+    },
+    "airlinePref": {
+      "any": "Any airline",
+      "star": "Star Alliance",
+      "oneworld": "oneworld",
+      "skyteam": "SkyTeam",
+      "specific": "Specific airlines"
+    },
+    "stops": {
+      "any": "Any",
+      "0": "Nonstop only",
+      "1": "1 stop or fewer"
+    },
+    "stopsChip": {
+      "0": "nonstop",
+      "1": "≤1 stop"
+    },
+    "window": {
+      "0": "Exact date",
+      "3": "±3 days",
+      "7": "±7 days"
+    },
+    "adults": "{count, plural, one {# adult} other {# adults}}",
+    "nights": "{count, plural, one {# night} other {# nights}}",
+    "oneWayLower": "one way",
+    "roundTripLower": "round trip",
+    "cities": "{from} – {to}",
+    "everyHours": "Every {hours} hours"
+  },
+  "WatchForm": {
+    "newTitle": "New watch",
+    "editTitle": "Edit watch",
+    "cancel": "Cancel",
+    "trip": "Trip",
+    "tripType": "Trip type",
+    "from": "From",
+    "to": "To",
+    "airportPlaceholder": "City or airport code",
+    "noAirportMatch": "No matching airport",
+    "depart": "Depart",
+    "return": "Return",
+    "flexTitle": "How flexible are your dates?",
+    "flexBody": "We'll also check nearby departures with the same trip length and chart them side by side.",
+    "dateWindow": "Date window",
+    "windowOption": {
+      "0": "Exact dates",
+      "3": "±3 days",
+      "7": "±7 days"
+    },
+    "datesCount": "{count, plural, one {Checks # date} other {Checks # dates}}",
+    "airlines": "Airlines",
+    "airlinePref": "Airline preference",
+    "airlineCodes": "Airline codes",
+    "airlineCodesPlaceholder": "e.g. BR, CI, UA",
+    "details": "Details",
+    "cabin": "Cabin",
+    "adults": "Adults",
+    "stops": "Stops",
+    "currency": "Currency",
+    "currencyOption": "{code} · {name}",
+    "currencyName": {
+      "USD": "US dollar",
+      "TWD": "New Taiwan dollar",
+      "JPY": "Japanese yen",
+      "EUR": "Euro",
+      "GBP": "British pound",
+      "HKD": "Hong Kong dollar",
+      "SGD": "Singapore dollar",
+      "CAD": "Canadian dollar",
+      "AUD": "Australian dollar",
+      "KRW": "Korean won"
+    },
+    "frequency": "Check my dates every",
+    "frequencyOption": {
+      "6": "6 hours",
+      "12": "12 hours (default)",
+      "24": "24 hours"
+    },
+    "target": "Alert below (optional)",
+    "submitCreate": "Start watching",
+    "submitEdit": "Save changes",
+    "saving": "Saving…",
+    "summaryTitle": "What we'll track",
+    "summaryDates": "Dates",
+    "summaryWindow": "Window",
+    "summaryAirlines": "Airlines",
+    "summaryCabin": "Cabin",
+    "summaryCurrency": "Currency",
+    "summaryPickRoute": "Pick a route",
+    "summaryPickDates": "Pick dates",
+    "summaryExact": "Exact dates only",
+    "summaryWindowDates": "±{days} days · {count} dates",
+    "summaryNights": "{from} → {to} ({nights})",
+    "checksTitle": "Checks per month (estimate)",
+    "checksValue": "≈{count}",
+    "freqNoteExact": "Your dates every {hours} hours.",
+    "freqNoteFlex": "Your dates every {hours} hours; nearby dates once a day.",
+    "freqNoteSlow": "Checks slow down when departure is far away.",
+    "fixErrors": "Please fix the highlighted fields.",
+    "saveError": "We couldn't save the watch. Please try again.",
+    "errors": {
+      "required": "Required.",
+      "invalid": "Choose a valid option.",
+      "unknownAirport": "Pick an airport from the list.",
+      "sameAirport": "Pick a different airport from where you're leaving.",
+      "datePast": "Pick a date in the future.",
+      "returnBeforeDepart": "Return must be after departure.",
+      "airlinesRequired": "Enter at least one airline code.",
+      "airlinesInvalid": "Use 2-character airline codes such as BR or CI (up to 10).",
+      "adultsRange": "Enter 1 to 9 adults.",
+      "targetInvalid": "Enter a positive amount, like 800."
+    }
+  },
+  "WatchDetail": {
+    "pageTitle": "Watch",
+    "back": "All watches",
+    "booked": "I booked this",
+    "edit": "Edit watch",
+    "pause": "Pause",
+    "resume": "Resume",
+    "delete": "Delete",
+    "pausedBanner": "This watch is paused. We won't check prices or send alerts until you resume it.",
+    "priceTitle": "Current lowest",
+    "waitingTitle": "Waiting for the first price check",
+    "waitingBody": "After the first check you'll see the lowest price here, plus nearby dates and the price over time.",
+    "target": "Your target {price}",
+    "noTarget": "No target price set",
+    "settingsTitle": "Watch settings",
+    "settingWindow": "Date window",
+    "settingFrequency": "Check my dates",
+    "settingCurrency": "Currency",
+    "settingTarget": "Alert below",
+    "settingStatus": "Status",
+    "settingCreated": "Created",
+    "statusActive": "Active",
+    "statusPaused": "Paused",
+    "none": "—",
+    "notFoundTitle": "Watch not found",
+    "notFoundBody": "It may have been deleted, or the link is wrong.",
+    "confirmQuestion": "Delete {route}?",
+    "confirmBody": "You'll stop getting alerts and its price history will be removed.",
+    "cancel": "Cancel",
+    "confirmDelete": "Delete watch"
   }
 }

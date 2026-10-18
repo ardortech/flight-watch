@@ -1,12 +1,26 @@
 {
   "Common": {
-    "skipToContent": "跳至主要內容"
+    "skipToContent": "跳至主要內容",
+    "comingSoon": "即將推出",
+    "priceNote": "顯示價格為「起」價，最終價格以結帳時為準。",
+    "loading": "載入中…"
   },
   "Header": {
-    "dashboard": "總覽",
-    "language": "語言",
+    "mainNav": "主選單",
+    "watches": "我的追蹤",
+    "trips": "我的旅程",
+    "alerts": "通知紀錄",
+    "settings": "設定",
+    "newWatch": "新增追蹤",
+    "language": "語言 Language",
     "signOut": "登出",
     "signedInAs": "已登入：{email}"
+  },
+  "Language": {
+    "en": "EN",
+    "zh-TW": "中文",
+    "nameEn": "English",
+    "nameZh-TW": "繁體中文"
   },
   "Login": {
     "title": "登入",
@@ -22,22 +36,187 @@
     "linkError": "這個登入連結無效或已過期，請重新索取。"
   },
   "Dashboard": {
-    "title": "你的追蹤",
-    "newWatch": "新增追蹤",
+    "title": "我的追蹤",
+    "intro": "系統會自動定時查價，價格一降就寄信通知你。",
+    "summary": "摘要",
+    "list": "追蹤清單",
     "tiles": {
       "activeWatches": "追蹤中",
-      "drops7d": "7 天內降價次數",
-      "bestSaving": "與首次價格相比最多省下",
-      "checksUsed": "本月已用查價次數"
+      "drops7d": "近 7 天降價次數",
+      "bestSaving": "比初次查價最多省下",
+      "checksUsed": "本月已查價次數"
     },
     "emptyTitle": "目前沒有追蹤",
-    "emptyBody": "為航線和日期建立追蹤，票價下降時我們會寄電子郵件通知你。",
-    "comingSoon": "即將推出",
-    "loading": "載入中…",
-    "priceNote": "顯示價格為「起」價，最終價格以結帳時為準。"
+    "emptyBody": "輸入航線和日期，我們會幫你盯著票價。",
+    "emptyCta": "新增追蹤",
+    "awaitingPrice": "等待首次查價",
+    "noTrendYet": "查價幾次後會顯示走勢",
+    "paused": "已暫停",
+    "deleteLabel": "刪除追蹤 {route}",
+    "deleteTitle": "刪除追蹤",
+    "confirmLabel": "確認刪除 {route}",
+    "confirmQuestion": "確定刪除 {route}？",
+    "confirmBody": "刪除後不會再收到通知，價格紀錄也會一併移除。",
+    "cancel": "取消",
+    "confirmDelete": "刪除追蹤",
+    "deleted": "已刪除 {route}，不會再收到它的通知。",
+    "undo": "復原",
+    "dismiss": "關閉",
+    "deleteFailed": "無法刪除 {route}，請再試一次。",
+    "undoFailed": "無法復原 {route}，請再試一次。"
   },
-  "Language": {
-    "en": "English",
-    "zh-TW": "繁體中文"
+  "Watch": {
+    "tripType": {
+      "round": "來回",
+      "oneway": "單程"
+    },
+    "cabin": {
+      "economy": "經濟艙",
+      "premium_economy": "豪華經濟艙",
+      "business": "商務艙",
+      "first": "頭等艙"
+    },
+    "airlinePref": {
+      "any": "不限航空",
+      "star": "星空聯盟",
+      "oneworld": "寰宇一家",
+      "skyteam": "天合聯盟",
+      "specific": "指定航空公司"
+    },
+    "stops": {
+      "any": "不限",
+      "0": "只要直飛",
+      "1": "最多轉機 1 次"
+    },
+    "stopsChip": {
+      "0": "直飛",
+      "1": "最多轉機 1 次"
+    },
+    "window": {
+      "0": "精確日期",
+      "3": "前後 3 天",
+      "7": "前後 7 天"
+    },
+    "adults": "{count} 位成人",
+    "nights": "{count} 晚",
+    "oneWayLower": "單程",
+    "roundTripLower": "來回",
+    "cities": "{from} – {to}",
+    "everyHours": "每 {hours} 小時"
+  },
+  "WatchForm": {
+    "newTitle": "新增追蹤",
+    "editTitle": "編輯追蹤",
+    "cancel": "取消",
+    "trip": "行程",
+    "tripType": "行程類型",
+    "from": "出發地",
+    "to": "目的地",
+    "airportPlaceholder": "城市或機場代碼",
+    "noAirportMatch": "找不到符合的機場",
+    "depart": "去程日期",
+    "return": "回程日期",
+    "flexTitle": "日期可以彈性調整嗎？",
+    "flexBody": "我們也會查詢同樣天數、提早或延後出發的票價，並排比較。",
+    "dateWindow": "日期範圍",
+    "windowOption": {
+      "0": "精確日期",
+      "3": "前後 3 天",
+      "7": "前後 7 天"
+    },
+    "datesCount": "查 {count} 個日期",
+    "airlines": "航空公司",
+    "airlinePref": "航空公司偏好",
+    "airlineCodes": "航空公司代碼",
+    "airlineCodesPlaceholder": "例如 BR, CI, UA",
+    "details": "其他條件",
+    "cabin": "艙等",
+    "adults": "成人人數",
+    "stops": "轉機",
+    "currency": "幣別",
+    "currencyOption": "{name}（{code}）",
+    "currencyName": {
+      "USD": "美元",
+      "TWD": "新台幣",
+      "JPY": "日圓",
+      "EUR": "歐元",
+      "GBP": "英鎊",
+      "HKD": "港幣",
+      "SGD": "新加坡幣",
+      "CAD": "加幣",
+      "AUD": "澳幣",
+      "KRW": "韓元"
+    },
+    "frequency": "你的日期查價頻率",
+    "frequencyOption": {
+      "6": "每 6 小時",
+      "12": "每 12 小時（預設）",
+      "24": "每 24 小時"
+    },
+    "target": "低於此價格就通知（選填）",
+    "submitCreate": "開始追蹤",
+    "submitEdit": "儲存變更",
+    "saving": "儲存中…",
+    "summaryTitle": "追蹤內容",
+    "summaryDates": "日期",
+    "summaryWindow": "範圍",
+    "summaryAirlines": "航空",
+    "summaryCabin": "艙等",
+    "summaryCurrency": "幣別",
+    "summaryPickRoute": "請選擇航線",
+    "summaryPickDates": "請選擇日期",
+    "summaryExact": "只查精確日期",
+    "summaryWindowDates": "前後 {days} 天 · {count} 個日期",
+    "summaryNights": "{from} → {to}（{nights}）",
+    "checksTitle": "每月查價次數（估計）",
+    "checksValue": "約 {count} 次",
+    "freqNoteExact": "你的日期每 {hours} 小時查一次。",
+    "freqNoteFlex": "你的日期每 {hours} 小時查一次，鄰近日期每天一次。",
+    "freqNoteSlow": "離出發日還很遠時會降低查價頻率。",
+    "fixErrors": "請修正標示的欄位。",
+    "saveError": "目前無法儲存追蹤，請再試一次。",
+    "errors": {
+      "required": "必填。",
+      "invalid": "請選擇有效的選項。",
+      "unknownAirport": "請從清單中選擇機場。",
+      "sameAirport": "目的地不能和出發地相同。",
+      "datePast": "請選擇今天以後的日期。",
+      "returnBeforeDepart": "回程日期必須晚於去程日期。",
+      "airlinesRequired": "請輸入至少一個航空公司代碼。",
+      "airlinesInvalid": "請輸入 2 碼航空公司代碼，例如 BR 或 CI（最多 10 個）。",
+      "adultsRange": "成人人數為 1 到 9 位。",
+      "targetInvalid": "請輸入大於 0 的金額，例如 800。"
+    }
+  },
+  "WatchDetail": {
+    "pageTitle": "追蹤詳情",
+    "back": "返回所有追蹤",
+    "booked": "我已訂票",
+    "edit": "編輯",
+    "pause": "暫停",
+    "resume": "繼續追蹤",
+    "delete": "刪除",
+    "pausedBanner": "這個追蹤已暫停。繼續追蹤之前，不會查價也不會寄送通知。",
+    "priceTitle": "目前最低價",
+    "waitingTitle": "等待首次查價",
+    "waitingBody": "首次查價後，這裡會顯示目前最低價、鄰近日期比價和價格走勢。",
+    "target": "目標價 {price}",
+    "noTarget": "未設定目標價",
+    "settingsTitle": "追蹤設定",
+    "settingWindow": "日期範圍",
+    "settingFrequency": "你的日期查價頻率",
+    "settingCurrency": "幣別",
+    "settingTarget": "低於此價格就通知",
+    "settingStatus": "狀態",
+    "settingCreated": "建立日期",
+    "statusActive": "追蹤中",
+    "statusPaused": "已暫停",
+    "none": "—",
+    "notFoundTitle": "找不到這個追蹤",
+    "notFoundBody": "它可能已被刪除，或連結有誤。",
+    "confirmQuestion": "確定刪除 {route}？",
+    "confirmBody": "刪除後不會再收到通知，價格紀錄也會一併移除。",
+    "cancel": "取消",
+    "confirmDelete": "刪除追蹤"
   }
 }

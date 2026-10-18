@@ -80,8 +80,8 @@ flowchart LR
 
 | 階段 | 內容 | 狀態 |
 | --- | --- | --- |
-| 1. 基礎架構 | App 外框、雙語、登入、資料庫、空白主畫面 | 完成（分支待合併） |
-| 2. 追蹤 | 新增追蹤表單、主畫面卡片、詳情頁外框、刪除和復原、暫停；機場清單（自動完成） | 下一個 |
+| 1. 基礎架構 | App 外框、雙語、登入、資料庫、空白主畫面 | 完成 |
+| 2. 追蹤 | 新增追蹤表單、主畫面卡片、詳情頁外框、刪除和復原、暫停；機場清單（自動完成） | 完成（PR 待合併） |
 | 3. 真實票價 | Ignav、定時查價、鄰近日期圖表、最便宜航班、訂票按鈕 | |
 | 4. 價格分析 | SerpApi 價格判斷和歷史、價格走勢圖、走勢小圖 | |
 | 5. 通知 | 通知條件、雙語降價通知信 | |
@@ -174,8 +174,8 @@ Two outside services supply prices; during development a built-in fake provider 
 
 | Phase | What gets built | Status |
 | --- | --- | --- |
-| 1. Scaffold | App shell, both languages, sign-in, database, empty dashboard | Done (branch awaiting merge) |
-| 2. Watches | New-watch form, dashboard cards, detail page shell, delete and Undo, pause; airports list for autocomplete | Next |
+| 1. Scaffold | App shell, both languages, sign-in, database, empty dashboard | Done |
+| 2. Watches | New-watch form, dashboard cards, detail page shell, delete and Undo, pause; airports list for autocomplete | Done (PR awaiting merge) |
 | 3. Real prices | Ignav, scheduled checks, nearby-dates chart, cheapest flights, Book button | |
 | 4. Insights | SerpApi price level and history, price-over-time chart, sparklines | |
 | 5. Alerts | Alert rules, price-drop emails in both languages | |
