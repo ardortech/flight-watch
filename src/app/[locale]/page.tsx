@@ -1,84 +1,91 @@
 import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { redirect } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { createClient } from "@/lib/supabase/server";
+import { describeWatch } from "@/lib/watches/describe";
+import { getAirportMap, getWatch, listWatches, requireUserId } from "@/lib/watches/queries";
+import { WatchList, type WatchCard } from "./watch-list";
 
-export default async function DashboardPage({ params }: PageProps<"/[locale]">) {
+export default async function DashboardPage({ params, searchParams }: PageProps<"/[locale]">) {
   const { locale: raw } = await params;
   const locale = raw as Locale;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Dashboard" });
+  const tCommon = await getTranslations({ locale, namespace: "Common" });
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between gap-4">
-        <h1 className="text-2xl font-semibold">{t("title")}</h1>
-        <NewWatchButton label={t("newWatch")} hint={t("comingSoon")} />
+    <div className="flex flex-col gap-7">
+      <div>
+        <h1 className="text-[32px] leading-tight font-bold">{t("title")}</h1>
+        <p className="mt-1.5 text-muted">{t("intro")}</p>
       </div>
-      <Suspense fallback={<p className="text-muted">{t("loading")}</p>}>
-        <DashboardBody locale={locale} />
+      <Suspense fallback={<p className="text-muted">{tCommon("loading")}</p>}>
+        <DashboardBody locale={locale} searchParams={searchParams} />
       </Suspense>
-      <p className="text-xs text-muted">{t("priceNote")}</p>
+      <p className="text-xs text-muted">{tCommon("priceNote")}</p>
     </div>
   );
 }
 
-async function DashboardBody({ locale }: { locale: Locale }) {
-  const t = await getTranslations({ locale, namespace: "Dashboard" });
-  const supabase = await createClient();
-  const { data: claims } = await supabase.auth.getClaims();
-  if (!claims?.claims?.sub) redirect({ href: "/login", locale });
+async function DashboardBody({
+  locale,
+  searchParams,
+}: {
+  locale: Locale;
+  searchParams: PageProps<"/[locale]">["searchParams"];
+}) {
+  await requireUserId(locale);
+  const [t, tWatch, watches, airports, { deleted }] = await Promise.all([
+    getTranslations({ locale, namespace: "Dashboard" }),
+    getTranslations({ locale, namespace: "Watch" }),
+    listWatches(),
+    getAirportMap(),
+    searchParams,
+  ]);
 
-  const { count, error } = await supabase
-    .from("watches")
-    .select("id", { count: "exact", head: true })
-    .is("deleted_at", null)
-    .eq("status", "active");
-  if (error) throw new Error(`Failed to load watches: ${error.message}`);
-  const activeWatches = count ?? 0;
+  const cards: WatchCard[] = watches.map((w) => {
+    const d = describeWatch(w, airports, locale, tWatch);
+    return {
+      id: w.id,
+      route: d.route,
+      cities: d.cities,
+      dates: d.dates,
+      filters: d.filters,
+      window: d.window,
+      priceNote: d.priceNote,
+      paused: w.status === "paused",
+    };
+  });
 
+  // Arriving from "Delete" on a watch page: offer Undo for that watch.
+  let initialUndo: { id: string; route: string } | null = null;
+  if (typeof deleted === "string") {
+    const w = await getWatch(deleted);
+    if (w?.deleted_at) initialUndo = { id: w.id, route: describeWatch(w, airports, locale, tWatch).route };
+  }
+
+  const activeCount = watches.filter((w) => w.status === "active").length;
+  // Price drops, savings and check counts need price checks (phases 3–5); until then show "—".
   const tiles = [
-    { label: t("tiles.activeWatches"), value: String(activeWatches) },
-    { label: t("tiles.drops7d"), value: "0" },
+    { label: t("tiles.activeWatches"), value: String(activeCount) },
+    { label: t("tiles.drops7d"), value: "—" },
     { label: t("tiles.bestSaving"), value: "—" },
-    { label: t("tiles.checksUsed"), value: "0" },
+    { label: t("tiles.checksUsed"), value: "—" },
   ];
 
   return (
     <>
-      <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {tiles.map((tile) => (
-          <div key={tile.label} className="rounded-lg bg-navy p-4 text-white">
-            <dt className="text-xs text-white/70">{tile.label}</dt>
-            <dd className="mt-1 font-mono text-2xl font-semibold">{tile.value}</dd>
-          </div>
-        ))}
-      </dl>
-
-      {activeWatches === 0 && (
-        <section className="rounded-lg border border-dashed border-line bg-white px-6 py-12 text-center">
-          <h2 className="text-lg font-semibold">{t("emptyTitle")}</h2>
-          <p className="mx-auto mt-2 max-w-md text-muted">{t("emptyBody")}</p>
-          <div className="mt-6 flex justify-center">
-            <NewWatchButton label={t("newWatch")} hint={t("comingSoon")} />
-          </div>
-        </section>
-      )}
+      <section aria-label={t("summary")}>
+        <dl className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          {tiles.map((tile) => (
+            <div key={tile.label} className="rounded-xl border border-line bg-white px-5 py-4">
+              <dt className="text-[13px] text-muted">{tile.label}</dt>
+              <dd className="mt-1 font-mono text-[28px] font-semibold">{tile.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+      {/* Keyed so a new ?deleted= remounts the list (Next keeps visited pages alive, with their state). */}
+      <WatchList key={initialUndo?.id ?? "none"} cards={cards} initialUndo={initialUndo} />
     </>
-  );
-}
-
-/** The New watch form arrives in phase 2; until then the button is shown but disabled. */
-function NewWatchButton({ label, hint }: { label: string; hint: string }) {
-  return (
-    <button
-      type="button"
-      disabled
-      title={hint}
-      className="rounded bg-amber px-4 py-2 font-semibold text-navy disabled:cursor-not-allowed disabled:opacity-60"
-    >
-      + {label}
-    </button>
   );
 }

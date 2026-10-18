@@ -51,6 +51,11 @@ describe("MockProvider", () => {
     expect(Number.isInteger(r.price)).toBe(true);
   });
 
+  it("labels its results as mock, never ignav", async () => {
+    const r = await new MockProvider().searchLowest(base);
+    expect(r.source).toBe("mock");
+  });
+
   it("respects nonstop-only", async () => {
     const r = await new MockProvider().searchLowest({ ...base, maxStops: 0 });
     expect(r.stops).toBe(0);

@@ -20,6 +20,9 @@ export async function GET(request: NextRequest) {
   const supabase = await createClient();
   const { data, error } = await supabase.auth.exchangeCodeForSession(code);
   if (error || !data.user) {
+    // A used link opened again (e.g. a reload) fails the exchange; if already signed in, just continue.
+    const { data: existing } = await supabase.auth.getClaims();
+    if (existing?.claims?.sub) return NextResponse.redirect(`${origin}/${fallbackLocale}`);
     return NextResponse.redirect(`${origin}/${fallbackLocale}/login?error=link`);
   }
 

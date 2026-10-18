@@ -3,7 +3,8 @@
 export type TripType = "round" | "oneway";
 export type Cabin = "economy" | "premium_economy" | "business" | "first";
 export type AirlinePref = "any" | "star" | "oneworld" | "skyteam" | "specific";
-export type PriceSource = "ignav" | "serpapi";
+/** "mock" marks fake prices from MockProvider; drop detection only ever compares "ignav" with "ignav". */
+export type PriceSource = "ignav" | "serpapi" | "mock";
 
 export type FareQuery = {
   tripType: TripType;

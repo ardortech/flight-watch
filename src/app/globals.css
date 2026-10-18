@@ -29,3 +29,24 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
 }
+
+/* Text inputs and selects on forms (mockup: 1px #C4CAC4 border, 8px radius, 44px tall). */
+@layer components {
+  .field {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #c4cac4;
+    border-radius: 8px;
+    background: #fff;
+    font: inherit;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-navy);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-amber) 50%, transparent);
+  }
+  .field.border-high {
+    border-color: var(--color-high);
+  }
+}
