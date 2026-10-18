@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Your trips</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#174A94}a:hover{color:#0E2F62}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F3F4F1; color: #14202B; font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.5">
+  <header style="background: #14202B; color: #F3F4F1">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l8-3 4-9 2 1-2 8 6-2 2 2-18 6z"></path><path d="M3 21h18"></path></svg>
+        <span>Flight Watch</span>
+        <span role="group" aria-label="Language 語言" style="margin-left: 12px; display: inline-flex; border: 1px solid #4A5B6C; border-radius: 999px; overflow: hidden; font-size: 13px; font-weight: 600"><a href="TripsZh.dc.html" lang="zh-Hant-TW" style="padding: 6px 12px; color: #C9D1D9; text-decoration: none">中文</a><a href="#" aria-current="true" style="padding: 6px 12px; background: #E8A33D; color: #14202B; text-decoration: none">EN</a></span>
+      </div>
+      <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px">
+        <a href="Main.dc.html" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Watches</a>
+        <a href="#" aria-current="page" style="color: #FFFFFF; text-decoration: none; padding: 10px 14px; border-radius: 8px; background: #26374A; font-weight: 600">Trips</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Alerts</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Settings</a>
+        <a href="#" style="margin-left: 8px; display: inline-flex; align-items: center; gap: 6px; background: #E8A33D; color: #14202B; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 600">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          Add trip
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <div>
+      <h1 style="margin: 0; font-size: 32px; line-height: 1.15; letter-spacing: -0.02em">Your trips</h1>
+      <p style="margin: 6px 0 0; color: #4F5B66">Booked trips from your watches, plus anything you add yourself.</p>
+    </div>
+
+    <div role="tablist" aria-label="Trips" style="display: flex; gap: 4px; border-bottom: 1px solid #DDE1DC">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+        <button type="button" role="tab" aria-selected="{{ t.selected }}" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ isUpcoming }}" hint-placeholder-val="{{ true }}">
+      <section aria-label="Upcoming trips" style="display: flex; flex-direction: column; gap: 14px">
+        <a href="TripDetail.dc.html" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; background: #14202B; color: #F3F4F1; border-radius: 14px; padding: 24px 28px; text-decoration: none">
+          <div style="flex: 0 0 auto; text-align: center; min-width: 96px">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 44px; font-weight: 600; line-height: 1; color: #E8A33D">44</div>
+            <div style="font-size: 13px; color: #AEB8C2; margin-top: 4px">days to go</div>
+          </div>
+          <div style="flex: 1 1 320px; min-width: 0">
+            <div style="font-size: 13px; color: #AEB8C2">Next trip</div>
+            <div style="font-size: 22px; font-weight: 700">Thanksgiving in New York</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; margin-top: 2px">SFO → JFK · Thu Nov 26</div>
+            <div style="font-size: 14px; color: #C9D1D9; margin-top: 4px">United · 1 flight · nonstop</div>
+          </div>
+          <div style="flex: 0 1 220px; text-align: right">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600">$289</div>
+            <div style="font-size: 13px; color: #C9D1D9">paid · one way</div>
+          </div>
+        </a>
+
+        <sc-for list="{{ upcoming }}" as="u" hint-placeholder-count="2">
+          <a href="{{ u.href }}" style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: center; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 20px 24px; color: #14202B; text-decoration: none">
+            <div style="flex: 0 0 auto; min-width: 96px; text-align: center">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; line-height: 1">{{ u.days }}</div>
+              <div style="font-size: 12px; color: #4F5B66; margin-top: 4px">days to go</div>
+            </div>
+            <div style="flex: 2 1 280px; min-width: 0">
+              <div style="font-size: 18px; font-weight: 700">{{ u.name }}</div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px">{{ u.route }}</div>
+              <div style="font-size: 14px; color: #4F5B66">{{ u.meta }}</div>
+            </div>
+            <div style="flex: 1 1 200px; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 6px">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600">{{ u.paid }}</div>
+              <span style="{{ u.chipStyle }}">{{ u.chip }}</span>
+            </div>
+          </a>
+        </sc-for>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isPast }}" hint-placeholder-val="{{ false }}">
+      <section aria-label="Past trips" style="display: flex; flex-direction: column; gap: 20px">
+        <sc-for list="{{ pastYears }}" as="y" hint-placeholder-count="2">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <h2 style="margin: 0; font-size: 16px; color: #4F5B66; font-weight: 600">{{ y.year }} · {{ y.summary }}</h2>
+            <sc-for list="{{ y.trips }}" as="p" hint-placeholder-count="3">
+              <a href="#" style="display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 16px 24px; color: #14202B; text-decoration: none">
+                <div style="flex: 0 0 110px; font-size: 14px; color: #4F5B66">{{ p.when }}</div>
+                <div style="flex: 2 1 260px; min-width: 0">
+                  <div style="font-weight: 700">{{ p.name }}</div>
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px">{{ p.route }} · {{ p.airline }}</div>
+                </div>
+                <div style="flex: 1 1 140px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #4F5B66">{{ p.miles }}</div>
+                <div style="flex: 0 1 120px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-weight: 600">{{ p.paid }}</div>
+              </a>
+            </sc-for>
+          </div>
+        </sc-for>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isStats }}" hint-placeholder-val="{{ false }}">
+      <section aria-label="Travel stats" style="display: flex; flex-direction: column; gap: 20px">
+        <div role="group" aria-label="Year" style="display: inline-flex; align-self: flex-start; background: #EEF0EC; border-radius: 10px; padding: 4px; gap: 4px">
+          <sc-for list="{{ years }}" as="yr" hint-placeholder-count="3">
+            <button type="button" aria-pressed="{{ yr.pressed }}" onClick="{{ yr.pick }}" style="{{ yr.style }}">{{ yr.label }}</button>
+          </sc-for>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px">
+          <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
+            <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 16px 18px">
+              <div style="color: #4F5B66; font-size: 13px">{{ t.label }}</div>
+              <div style="{{ t.valueStyle }}">{{ t.value }}</div>
+              <div style="color: #6B7680; font-size: 12px">{{ t.note }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <div style="flex: 1 1 360px; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 22px 24px">
+            <h2 style="margin: 0 0 14px; font-size: 18px">Flights by airline</h2>
+            <div style="display: flex; flex-direction: column; gap: 12px">
+              <sc-for list="{{ airlines }}" as="a" hint-placeholder-count="4">
+                <div style="display: grid; grid-template-columns: 140px 1fr 40px; align-items: center; gap: 12px; font-size: 14px">
+                  <span>{{ a.name }}</span>
+                  <div style="height: 14px; background: #EEF0EC; border-radius: 4px; overflow: hidden"><div style="{{ a.barStyle }}"></div></div>
+                  <span style="font-family: 'IBM Plex Mono', monospace; text-align: right">{{ a.count }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="flex: 1 1 360px; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 22px 24px">
+            <h2 style="margin: 0 0 14px; font-size: 18px">Places</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <sc-for list="{{ places }}" as="pl" hint-placeholder-count="4">
+                <span style="font-size: 14px; padding: 6px 12px; border-radius: 999px; background: #EEF0EC">{{ pl }}</span>
+              </sc-for>
+            </div>
+            <h2 style="margin: 22px 0 10px; font-size: 18px">Saved with watches</h2>
+            <p style="margin: 0; font-size: 14px; color: #3D4650">{{ savedNote }}</p>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 12px; color: #6B7680">Miles are straight-line distances between airports. Spending is shown in US$; trips paid in other currencies are converted at the booking-date rate.</p>
+      </section>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'upcoming', year: '2026' };
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    var tabs = [['upcoming', 'Upcoming · 3'], ['past', 'Past · 4'], ['stats', 'Stats']].map(function (t) {
+      var on = s.tab === t[0];
+      return {
+        label: t[1], selected: on ? 'true' : 'false',
+        pick: function () { self.setState({ tab: t[0] }); },
+        style: 'font: inherit; font-weight: 600; min-height: 44px; padding: 10px 18px; border: 0; background: transparent; cursor: pointer; margin-bottom: -1px; border-bottom: 3px solid ' + (on ? '#14202B' : 'transparent') + '; color: ' + (on ? '#14202B' : '#4F5B66')
+      };
+    });
+    var chip = 'font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 999px';
+    var upcoming = [
+      { name: 'Taipei for New Year', route: 'SFO ⇄ TPE · Dec 18 → Jan 3', meta: 'EVA Air · 2 flights · seats 52A / 51K', days: '66', paid: '$812', chip: 'Now $798 · $14 below what you paid', chipStyle: chip + '; background: #DCE8FA; color: #174A94', href: 'TripDetail.dc.html' },
+      { name: 'Cherry blossoms in Tokyo', route: 'SFO ⇄ NRT · Mar 20 → Mar 29', meta: 'Japan Airlines · 2 flights · Premium economy', days: '158', paid: '$1,108', chip: 'Watching after booking', chipStyle: chip + '; background: #E6E8E3; color: #3D4650', href: '#' }
+    ];
+    var pastYears = [
+      { year: '2026', summary: '3 trips · 25,800 mi', trips: [
+        { when: 'Jun 3 – 12', name: 'Seoul', route: 'SFO ⇄ ICN', airline: 'Korean Air', miles: '11,300 mi', paid: '$1,046' },
+        { when: 'Apr 18 – 21', name: 'Vancouver long weekend', route: 'SFO ⇄ YVR', airline: 'Alaska', miles: '1,600 mi', paid: '$312' },
+        { when: 'Jan 20 – Feb 6', name: 'Lunar New Year in Taipei', route: 'SFO ⇄ TPE', airline: 'EVA Air', miles: '12,900 mi', paid: '$948' }
+      ] },
+      { year: '2025', summary: '1 trip · 11,240 mi', trips: [
+        { when: 'Oct 9 – 19', name: 'Osaka & Kyoto', route: 'SFO ⇄ KIX', airline: 'ANA', miles: '11,240 mi', paid: '$1,180' }
+      ] }
+    ];
+    var data = {
+      '2026': { tiles: [['Trips', '3', ''], ['Flights', '6', 'all nonstop'], ['Miles flown', '25,800', '≈ 1.0× around the Earth'], ['Countries', '3', 'Korea, Canada, Taiwan'], ['Spent', '$2,306', 'on flights'], ['Saved', '$310', 'vs. first price seen']],
+        airlines: [['EVA Air', 2], ['Korean Air', 2], ['Alaska', 2]], places: ['Seoul', 'Vancouver', 'Taipei'],
+        saved: 'Two of three trips were booked from a watch. Average saving: $155 per trip.' },
+      '2025': { tiles: [['Trips', '1', ''], ['Flights', '2', 'all nonstop'], ['Miles flown', '11,240', '≈ 0.45× around the Earth'], ['Countries', '1', 'Japan'], ['Spent', '$1,180', 'on flights'], ['Saved', '—', 'not booked from a watch']],
+        airlines: [['ANA', 2]], places: ['Osaka', 'Kyoto'],
+        saved: 'No trips this year were booked from a watch.' },
+      'all': { tiles: [['Trips', '4', ''], ['Flights', '8', 'all nonstop'], ['Miles flown', '37,040', '≈ 1.5× around the Earth'], ['Countries', '4', 'Korea, Canada, Taiwan, Japan'], ['Spent', '$3,486', 'on flights'], ['Saved', '$310', 'vs. first price seen']],
+        airlines: [['EVA Air', 2], ['Korean Air', 2], ['Alaska', 2], ['ANA', 2]], places: ['Seoul', 'Vancouver', 'Taipei', 'Osaka', 'Kyoto'],
+        saved: 'Two of four trips were booked from a watch. Average saving: $155 per trip.' }
+    };
+    var d = data[s.year];
+    var maxA = Math.max.apply(null, d.airlines.map(function (a) { return a[1]; }));
+    var years = [['2026', '2026'], ['2025', '2025'], ['all', 'All time']].map(function (y) {
+      var on = s.year === y[0];
+      return { label: y[1], pressed: on ? 'true' : 'false', pick: function () { self.setState({ year: y[0] }); },
+        style: 'font: inherit; font-size: 14px; font-weight: 600; min-height: 40px; padding: 8px 14px; border-radius: 8px; border: 0; cursor: pointer; background: ' + (on ? '#14202B' : 'transparent') + '; color: ' + (on ? '#FFFFFF' : '#3D4650') };
+    });
+    return {
+      tabs: tabs,
+      isUpcoming: s.tab === 'upcoming', isPast: s.tab === 'past', isStats: s.tab === 'stats',
+      upcoming: upcoming, pastYears: pastYears, years: years,
+      tiles: d.tiles.map(function (t) { return { label: t[0], value: t[1], note: t[2] || ' ', valueStyle: "font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; margin-top: 2px; color: " + (t[0] === 'Saved' && t[1] !== '—' ? '#1D5BB8' : '#14202B') }; }),
+      airlines: d.airlines.map(function (a) { return { name: a[0], count: a[1], barStyle: 'height: 100%; border-radius: 4px; background: #1F5FBF; width: ' + Math.round(a[1] / maxA * 100) + '%' }; }),
+      places: d.places, savedNote: d.saved
+    };
+  }
+}
+</script>
+</body>
+</html>

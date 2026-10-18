@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<title>我的旅程</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#174A94}a:hover{color:#0E2F62}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F3F4F1; color: #14202B; font-family: 'IBM Plex Sans', 'Noto Sans TC', sans-serif; font-size: 15px; line-height: 1.6">
+  <header style="background: #14202B; color: #F3F4F1">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l8-3 4-9 2 1-2 8 6-2 2 2-18 6z"></path><path d="M3 21h18"></path></svg>
+        <span>Flight Watch</span>
+        <span role="group" aria-label="語言 Language" style="margin-left: 12px; display: inline-flex; border: 1px solid #4A5B6C; border-radius: 999px; overflow: hidden; font-size: 13px; font-weight: 600"><a href="#" aria-current="true" style="padding: 6px 12px; background: #E8A33D; color: #14202B; text-decoration: none">中文</a><a href="Trips.dc.html" lang="en" style="padding: 6px 12px; color: #C9D1D9; text-decoration: none">EN</a></span>
+      </div>
+      <nav aria-label="主選單" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px">
+        <a href="MainZh.dc.html" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">我的追蹤</a>
+        <a href="#" aria-current="page" style="color: #FFFFFF; text-decoration: none; padding: 10px 14px; border-radius: 8px; background: #26374A; font-weight: 600">我的旅程</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">通知紀錄</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">設定</a>
+        <a href="#" style="margin-left: 8px; display: inline-flex; align-items: center; gap: 6px; background: #E8A33D; color: #14202B; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 700">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          新增旅程
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <div>
+      <h1 style="margin: 0; font-size: 32px; line-height: 1.2">我的旅程</h1>
+      <p style="margin: 6px 0 0; color: #4F5B66">從追蹤訂好的機票，以及你自己新增的旅程，都在這裡。</p>
+    </div>
+
+    <div role="tablist" aria-label="旅程" style="display: flex; gap: 4px; border-bottom: 1px solid #DDE1DC">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+        <button type="button" role="tab" aria-selected="{{ t.selected }}" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ isUpcoming }}" hint-placeholder-val="{{ true }}">
+      <section aria-label="即將出發" style="display: flex; flex-direction: column; gap: 14px">
+        <a href="TripDetailZh.dc.html" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; background: #14202B; color: #F3F4F1; border-radius: 14px; padding: 24px 28px; text-decoration: none">
+          <div style="flex: 0 0 auto; text-align: center; min-width: 96px">
+            <div style="font-size: 13px; color: #AEB8C2">還有</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 44px; font-weight: 600; line-height: 1; color: #E8A33D">44</div>
+            <div style="font-size: 13px; color: #AEB8C2; margin-top: 4px">天出發</div>
+          </div>
+          <div style="flex: 1 1 320px; min-width: 0">
+            <div style="font-size: 13px; color: #AEB8C2">下一趟旅程</div>
+            <div style="font-size: 22px; font-weight: 700">紐約感恩節</div>
+            <div style="font-family: 'IBM Plex Mono', 'Noto Sans TC', monospace; font-size: 17px; margin-top: 2px">SFO → JFK · 11月26日（週四）</div>
+            <div style="font-size: 14px; color: #C9D1D9; margin-top: 4px">聯合航空 · 1 段航班 · 直飛</div>
+          </div>
+          <div style="flex: 0 1 220px; text-align: right">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600">US$289</div>
+            <div style="font-size: 13px; color: #C9D1D9">實付 · 單程</div>
+          </div>
+        </a>
+
+        <sc-for list="{{ upcoming }}" as="u" hint-placeholder-count="2">
+          <a href="{{ u.href }}" style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: center; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 20px 24px; color: #14202B; text-decoration: none">
+            <div style="flex: 0 0 auto; min-width: 96px; text-align: center">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; line-height: 1">{{ u.days }}</div>
+              <div style="font-size: 12px; color: #4F5B66; margin-top: 4px">天後出發</div>
+            </div>
+            <div style="flex: 2 1 280px; min-width: 0">
+              <div style="font-size: 18px; font-weight: 700">{{ u.name }}</div>
+              <div style="font-family: 'IBM Plex Mono', 'Noto Sans TC', monospace; font-size: 15px">{{ u.route }}</div>
+              <div style="font-size: 14px; color: #4F5B66">{{ u.meta }}</div>
+            </div>
+            <div style="flex: 1 1 200px; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 6px">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600">{{ u.paid }}</div>
+              <span style="{{ u.chipStyle }}">{{ u.chip }}</span>
+            </div>
+          </a>
+        </sc-for>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isPast }}" hint-placeholder-val="{{ false }}">
+      <section aria-label="過去的旅程" style="display: flex; flex-direction: column; gap: 20px">
+        <sc-for list="{{ pastYears }}" as="y" hint-placeholder-count="2">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <h2 style="margin: 0; font-size: 16px; color: #4F5B66; font-weight: 700">{{ y.year }} 年 · {{ y.summary }}</h2>
+            <sc-for list="{{ y.trips }}" as="p" hint-placeholder-count="3">
+              <a href="#" style="display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 16px 24px; color: #14202B; text-decoration: none">
+                <div style="flex: 0 0 130px; font-size: 14px; color: #4F5B66">{{ p.when }}</div>
+                <div style="flex: 2 1 260px; min-width: 0">
+                  <div style="font-weight: 700">{{ p.name }}</div>
+                  <div style="font-size: 14px"><span style="font-family: 'IBM Plex Mono', monospace">{{ p.route }}</span> · {{ p.airline }}</div>
+                </div>
+                <div style="flex: 1 1 140px; font-family: 'IBM Plex Mono', 'Noto Sans TC', monospace; font-size: 14px; color: #4F5B66">{{ p.miles }}</div>
+                <div style="flex: 0 1 120px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-weight: 600">{{ p.paid }}</div>
+              </a>
+            </sc-for>
+          </div>
+        </sc-for>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isStats }}" hint-placeholder-val="{{ false }}">
+      <section aria-label="旅行統計" style="display: flex; flex-direction: column; gap: 20px">
+        <div role="group" aria-label="年份" style="display: inline-flex; align-self: flex-start; background: #EEF0EC; border-radius: 10px; padding: 4px; gap: 4px">
+          <sc-for list="{{ years }}" as="yr" hint-placeholder-count="3">
+            <button type="button" aria-pressed="{{ yr.pressed }}" onClick="{{ yr.pick }}" style="{{ yr.style }}">{{ yr.label }}</button>
+          </sc-for>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px">
+          <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
+            <div style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 12px; padding: 16px 18px">
+              <div style="color: #4F5B66; font-size: 13px">{{ t.label }}</div>
+              <div style="{{ t.valueStyle }}">{{ t.value }}</div>
+              <div style="color: #6B7680; font-size: 12px">{{ t.note }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <div style="flex: 1 1 360px; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 22px 24px">
+            <h2 style="margin: 0 0 14px; font-size: 18px">搭乘航空公司</h2>
+            <div style="display: flex; flex-direction: column; gap: 12px">
+              <sc-for list="{{ airlines }}" as="a" hint-placeholder-count="4">
+                <div style="display: grid; grid-template-columns: 140px 1fr 40px; align-items: center; gap: 12px; font-size: 14px">
+                  <span>{{ a.name }}</span>
+                  <div style="height: 14px; background: #EEF0EC; border-radius: 4px; overflow: hidden"><div style="{{ a.barStyle }}"></div></div>
+                  <span style="font-family: 'IBM Plex Mono', monospace; text-align: right">{{ a.count }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="flex: 1 1 360px; background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 22px 24px">
+            <h2 style="margin: 0 0 14px; font-size: 18px">去過的地方</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <sc-for list="{{ places }}" as="pl" hint-placeholder-count="4">
+                <span style="font-size: 14px; padding: 6px 12px; border-radius: 999px; background: #EEF0EC">{{ pl }}</span>
+              </sc-for>
+            </div>
+            <h2 style="margin: 22px 0 10px; font-size: 18px">追蹤省下的錢</h2>
+            <p style="margin: 0; font-size: 14px; color: #3D4650">{{ savedNote }}</p>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 12px; color: #6B7680">哩程為兩機場間的直線距離。花費以美元顯示，其他幣別依訂票當日匯率換算。</p>
+      </section>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'upcoming', year: '2026' };
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    var tabs = [['upcoming', '即將出發 · 3'], ['past', '過去 · 4'], ['stats', '統計']].map(function (t) {
+      var on = s.tab === t[0];
+      return {
+        label: t[1], selected: on ? 'true' : 'false',
+        pick: function () { self.setState({ tab: t[0] }); },
+        style: 'font: inherit; font-weight: 700; min-height: 44px; padding: 10px 18px; border: 0; background: transparent; cursor: pointer; margin-bottom: -1px; border-bottom: 3px solid ' + (on ? '#14202B' : 'transparent') + '; color: ' + (on ? '#14202B' : '#4F5B66')
+      };
+    });
+    var chip = 'font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 999px';
+    var upcoming = [
+      { name: '台北過新年', route: 'SFO ⇄ TPE · 12月18日 → 1月3日', meta: '長榮航空 · 2 段航班 · 座位 52A / 51K', days: '66', paid: 'US$812', chip: '現在 US$798 · 比實付低 US$14', chipStyle: chip + '; background: #DCE8FA; color: #174A94', href: 'TripDetailZh.dc.html' },
+      { name: '東京賞櫻', route: 'SFO ⇄ NRT · 3月20日 → 3月29日', meta: '日本航空 · 2 段航班 · 豪華經濟艙', days: '158', paid: 'US$1,108', chip: '訂票後持續追蹤', chipStyle: chip + '; background: #E6E8E3; color: #3D4650', href: '#' }
+    ];
+    var pastYears = [
+      { year: '2026', summary: '3 趟 · 25,800 哩', trips: [
+        { when: '6月3日 – 12日', name: '首爾', route: 'SFO ⇄ ICN', airline: '大韓航空', miles: '11,300 哩', paid: 'US$1,046' },
+        { when: '4月18日 – 21日', name: '溫哥華連假', route: 'SFO ⇄ YVR', airline: '阿拉斯加航空', miles: '1,600 哩', paid: 'US$312' },
+        { when: '1月20日 – 2月6日', name: '台北過農曆年', route: 'SFO ⇄ TPE', airline: '長榮航空', miles: '12,900 哩', paid: 'US$948' }
+      ] },
+      { year: '2025', summary: '1 趟 · 11,240 哩', trips: [
+        { when: '10月9日 – 19日', name: '大阪・京都', route: 'SFO ⇄ KIX', airline: '全日空', miles: '11,240 哩', paid: 'US$1,180' }
+      ] }
+    ];
+    var data = {
+      '2026': { tiles: [['旅程', '3', ' '], ['航班', '6', '全部直飛'], ['飛行哩程', '25,800', '約繞地球 1.0 圈'], ['國家', '3', '韓國、加拿大、台灣'], ['花費', 'US$2,306', '機票'], ['省下', 'US$310', '比初次查價']],
+        airlines: [['長榮航空', 2], ['大韓航空', 2], ['阿拉斯加航空', 2]], places: ['首爾', '溫哥華', '台北'],
+        saved: '3 趟中有 2 趟是從追蹤訂的，平均每趟省下 US$155。' },
+      '2025': { tiles: [['旅程', '1', ' '], ['航班', '2', '全部直飛'], ['飛行哩程', '11,240', '約繞地球 0.45 圈'], ['國家', '1', '日本'], ['花費', 'US$1,180', '機票'], ['省下', '—', '不是從追蹤訂的']],
+        airlines: [['全日空', 2]], places: ['大阪', '京都'],
+        saved: '這一年沒有從追蹤訂的旅程。' },
+      'all': { tiles: [['旅程', '4', ' '], ['航班', '8', '全部直飛'], ['飛行哩程', '37,040', '約繞地球 1.5 圈'], ['國家', '4', '韓國、加拿大、台灣、日本'], ['花費', 'US$3,486', '機票'], ['省下', 'US$310', '比初次查價']],
+        airlines: [['長榮航空', 2], ['大韓航空', 2], ['阿拉斯加航空', 2], ['全日空', 2]], places: ['首爾', '溫哥華', '台北', '大阪', '京都'],
+        saved: '4 趟中有 2 趟是從追蹤訂的，平均每趟省下 US$155。' }
+    };
+    var d = data[s.year];
+    var maxA = Math.max.apply(null, d.airlines.map(function (a) { return a[1]; }));
+    var years = [['2026', '2026'], ['2025', '2025'], ['all', '全部']].map(function (y) {
+      var on = s.year === y[0];
+      return { label: y[1], pressed: on ? 'true' : 'false', pick: function () { self.setState({ year: y[0] }); },
+        style: 'font: inherit; font-size: 14px; font-weight: 600; min-height: 40px; padding: 8px 14px; border-radius: 8px; border: 0; cursor: pointer; background: ' + (on ? '#14202B' : 'transparent') + '; color: ' + (on ? '#FFFFFF' : '#3D4650') };
+    });
+    return {
+      tabs: tabs,
+      isUpcoming: s.tab === 'upcoming', isPast: s.tab === 'past', isStats: s.tab === 'stats',
+      upcoming: upcoming, pastYears: pastYears, years: years,
+      tiles: d.tiles.map(function (t) { return { label: t[0], value: t[1], note: t[2], valueStyle: "font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; margin-top: 2px; color: " + (t[0] === '省下' && t[1] !== '—' ? '#1D5BB8' : '#14202B') }; }),
+      airlines: d.airlines.map(function (a) { return { name: a[0], count: a[1], barStyle: 'height: 100%; border-radius: 4px; background: #1F5FBF; width: ' + Math.round(a[1] / maxA * 100) + '%' }; }),
+      places: d.places, savedNote: d.saved
+    };
+  }
+}
+</script>
+</body>
+</html>

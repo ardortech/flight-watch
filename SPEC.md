@@ -1,10 +1,12 @@
-# Fare Monitor — Build Spec
+# Flight Watch — Build Spec
 
-A web app that watches flight prices for a route/date/airline preference, emails the user when the price drops, and charts prices for nearby dates. English and Traditional Chinese (zh-TW) UI.
+A web app that watches flight prices for a route/date/airline preference, emails the user when the price drops, charts prices for nearby dates, and keeps a log of booked trips. Traditional Chinese (zh-TW, default) and English UI.
 
-Phase 1 is cash fares only. Award/mileage search comes later (see "Later"). Keep the provider layer generic so it can be added without rewrites.
+Cash fares only for now. Award/mileage search comes later (see "Later"). Keep the provider layer generic so it can be added without rewrites.
 
-> "Fare Monitor" is a working name. Keep it in one config constant so it's easy to change.
+> The app name is **Flight Watch** (renamed from the working name "Fare Monitor"). It lives in one constant, `APP_NAME` in `src/config/app.ts`.
+
+Related files: `CLAUDE.md` (shared rules for Claude Code sessions), `docs/design-summary.md` (bilingual overview), `docs/mockup/` (approved screens), `docs/setup-guide.zh-TW.md` (new contributor setup).
 
 ---
 
@@ -17,9 +19,11 @@ Phase 1 is cash fares only. Award/mileage search comes later (see "Later"). Keep
 | Date window | Per watch: exact date, ±3 days, or ±7 days. Nearby dates keep the **same trip length** (shift the whole trip). |
 | Check frequency | User setting per watch: 6 / **12 (default)** / 24 hours for the target dates. Nearby dates: once a day. |
 | Currency | User picks per watch (USD, TWD, JPY, EUR, GBP, HKD, SGD, CAD, AUD, KRW). Default USD. |
-| Languages | `en` and `zh-TW`, every screen and every email |
+| Languages | `zh-TW` (default) and `en`, every screen and every email. A 中文 / EN toggle in the header; bare `/` picks from the browser language and remembers a manual switch (cookie + `profiles.locale`). |
 | Price history chart | Collapsed by default on the watch detail page |
 | Delete | From the dashboard, with confirm and Undo (soft delete) |
+| Travel log | "I booked this" turns a watch into a trip; trips can also be added by hand. Optional price watch after booking (default on, 12h, alert at $50 below price paid). See §7 screens 5–7 and phase 6. |
+| Tooling (phase 1) | Next.js 16, Tailwind CSS v4 (tokens as CSS variables mapped to the theme), npm, Supabase CLI migrations in `supabase/migrations/` |
 
 ## 2. Stack (defaults — change here if needed)
 
@@ -132,7 +136,65 @@ create table alliance_carriers (       -- editable; membership changes over time
 
 Row Level Security: users can only read/write their own `watches` and the rows that hang off them. The scheduler uses the service role key.
 
-Seed `alliance_carriers` with current members of the three alliances (verify against each alliance's official member list at build time; don't trust memory).
+Seed `alliance_carriers` with current members of the three alliances (verify against each alliance's official member list at build time; don't trust memory). Seed it in phase 3 and show the list to a person before committing the migration.
+
+### Added in later migrations
+
+The tables above are in the phase 1 migration. These come later, each as a **new** migration file (never edit an applied one):
+
+```sql
+-- phase 2: airports for autocomplete; lat/lng are needed for travel-log distances in phase 6
+create table airports (
+  iata char(3) primary key,
+  name_en text not null,
+  name_zh text,               -- Traditional Chinese name where known
+  city_en text not null,
+  city_zh text,
+  country_code char(2) not null,
+  lat double precision not null,
+  lng double precision not null
+);
+
+-- phase 6: travel log
+create type trip_status as enum ('upcoming', 'completed', 'cancelled');
+
+create table trips (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references profiles(id) on delete cascade,
+  watch_id uuid references watches(id) on delete set null,   -- set when created via "I booked this"
+  name text not null,
+  status trip_status not null default 'upcoming',
+  price_paid numeric(12,2),
+  currency char(3),
+  booked_on date,
+  booked_via text,            -- 'airline' | 'ota' | 'agent' | 'points'
+  confirmation_code text,     -- optional; shown masked in the UI
+  loyalty_program text,
+  miles_credited integer,
+  first_seen_price numeric(12,2),   -- copied from the watch, for "saved vs first seen"
+  keep_watching boolean not null default false,
+  rebook_threshold numeric(12,2) default 50,
+  notes text,
+  deleted_at timestamptz,
+  created_at timestamptz not null default now()
+);
+
+create table trip_segments (
+  id uuid primary key default gen_random_uuid(),
+  trip_id uuid not null references trips(id) on delete cascade,
+  seq smallint not null,              -- order within the trip
+  airline_code char(2),
+  flight_number text,
+  origin char(3) not null,
+  destination char(3) not null,
+  depart_at timestamptz,
+  arrive_at timestamptz,
+  cabin cabin,
+  seat text
+);
+```
+
+Same RLS rule: users see only their own trips and segments. Miles flown = great-circle distance between `airports.lat/lng` of each segment. When a trip has `keep_watching = true`, its watch stays active until departure and also alerts when the price falls `rebook_threshold` below `price_paid`.
 
 ---
 
@@ -225,12 +287,15 @@ Put this in a pure function (`evaluateAlerts(snapshot, history, insights, watch)
 
 ## 7. Screens
 
-Both languages. Desktop-first, works at phone width. Visual style: navy `#14202B` header and dark panels, light ground `#F3F4F1`, amber `#E8A33D` primary action, blue `#1F5FBF`/`#DCE8FA` for "cheaper/low", orange `#A8530F`/`#FBE3CC` for "higher". Fonts: IBM Plex Sans (UI), IBM Plex Mono (prices, airport codes), Noto Sans TC (Chinese).
+Both languages, Chinese by default, with a 中文 / EN toggle next to the app name in the header. Approved mockups for every screen are in `docs/mockup/` (`*Zh` = Chinese); match them. Header nav: 我的追蹤 Watches · 我的旅程 Trips · 通知紀錄 Alerts · 設定 Settings. Desktop-first, works at phone width. Visual style: navy `#14202B` header and dark panels, light ground `#F3F4F1`, amber `#E8A33D` primary action, blue `#1F5FBF`/`#DCE8FA` for "cheaper/low", orange `#A8530F`/`#FBE3CC` for "higher". Fonts: IBM Plex Sans (UI), IBM Plex Mono (prices, airport codes), Noto Sans TC (Chinese).
 
 1. **Dashboard (`/`)**: summary tiles (active watches, drops in 7 days, best saving vs. first seen, checks used this month); latest alert banner; watch cards showing route, cities, dates, filter chips, window chip, 30-day sparkline, current price, change since last check, Google price level. Each card has a **delete** button → inline confirm ("You'll stop getting alerts and its price history will be removed") → soft delete → **Undo** bar. Empty state with a New watch button.
 2. **New watch (`/watches/new`)**: trip type (round/one way); from/to (airport autocomplete); dates; date window (Exact / ±3 / ±7, with "1 / 7 / 15 dates"); airlines (Any / Star Alliance / oneworld / SkyTeam / Specific → code input); cabin; adults; stops; **currency**; **check frequency** (6 / 12 default / 24 h); optional target price (shows currency symbol). Side panel summarizes the watch and shows an estimated checks-per-month number.
-3. **Watch detail (`/watches/[id]`)**: route header with chips; current lowest price, change since last check, Google price level + typical range, first/lowest/target; **nearby dates bar chart** with Exact / ±3 / ±7 toggle (your date dark, cheapest blue, others grey) plus one-line insight ("Leaving Dec 15 is $24 cheaper"); **price over time** line chart with Google typical-range band and dashed target line, **collapsed by default** with a summary line and Show/Hide button; alert rules form; table of cheapest itineraries with **Book** (fetches booking link on click); edit / pause / delete.
+3. **Watch detail (`/watches/[id]`)**: route header with chips; current lowest price, change since last check, Google price level + typical range, first/lowest/target; **nearby dates bar chart** with Exact / ±3 / ±7 toggle (your date dark, cheapest blue, others grey) plus one-line insight ("Leaving Dec 15 is $24 cheaper"); **price over time** line chart with Google typical-range band and dashed target line, **collapsed by default** with a summary line and Show/Hide button; alert rules form; table of cheapest itineraries with **Book** (fetches booking link on click); **I booked this** (opens screen 7); edit / pause / delete.
 4. **Price-drop email**: subject `↓ SFO ⇄ TPE now $812 (−$86)`; price, old price struck through; "Why you're getting this" list of reasons; 3 nearest dates; buttons View price chart / Book; footer with cooldown, change rules, pause. Sent in the user's locale.
+5. **Trips (`/trips`)**: tabs **Upcoming** (dark "next trip" card with days-to-go countdown, then other trips with price paid and a status chip such as "Now $798 · $14 below what you paid"), **Past** (grouped by year: dates, name, route, airline, miles, price paid), **Stats** (year switcher 2026 / 2025 / All time; tiles for trips, flights, miles flown with "≈ N× around the Earth", countries, spent, saved vs first seen; flights by airline bars; places visited). "Add trip" button for manual entry.
+6. **Trip detail (`/trips/[id]`)**: name, status chips, countdown; flights (departure → arrival, duration, nonstop/stops, cabin, seat, miles); notes; booking card (price paid, saved vs first seen, booked date and channel, confirmation code masked with Show/Hide, loyalty program); **Price after booking** panel with on/off switch, current price vs paid, link to the watch; edit / mark cancelled / delete.
+7. **I booked this (dialog from watch detail)**: pre-filled from the watch: trip name, price paid (live "saved vs first seen" line, orange if paid more), booked on (airline / OTA / agent / points), outbound and return flight from the cheapest option (editable), confirmation code and loyalty program (optional), **keep watching after booking** switch with threshold ($25 / $50 / $100). Save → trip detail.
 
 Copy rules: prices are "from" prices; always say the final price is shown at checkout. zh-TW uses Taiwan terms (星空聯盟, 寰宇一家, 天合聯盟, 經濟艙, 豪華經濟艙, 直飛, 轉機, 12月18日, 週四).
 
@@ -241,16 +306,18 @@ Copy rules: prices are "from" prices; always say the final price is shown at che
 Each phase ends with something that runs. Use the mock provider until phase 3.
 
 1. **Scaffold** — Next.js + TS, next-intl (`en`, `zh-TW`), Supabase schema + RLS + magic-link auth, design tokens, layout/header. *Done when:* sign in, switch language, see an empty dashboard.
-2. **Watches CRUD** — new-watch form with validation (return after depart, dates in future, valid IATA), dashboard cards, detail page shell, soft delete + Undo, pause. *Done when:* create, view, pause, delete, undo, all in both languages.
+2. **Watches CRUD** — rename `APP_NAME` to "Flight Watch" and add the 中文 / EN header toggle; `airports` table + seed (with lat/lng) and airport autocomplete; new-watch form with validation (return after depart, dates in future, valid IATA), dashboard cards, detail page shell, soft delete + Undo, pause. *Done when:* create, view, pause, delete, undo, all in both languages.
 3. **Ignav + scheduler** — IgnavProvider, alliance resolution, currency→market map, date-pair expansion, scheduled + background function, snapshots, budget guard. Detail page: current price, nearby-dates chart, cheapest itineraries, Book button. *Done when:* a real watch fills in its nearby-dates chart after one scheduler run.
 4. **SerpApi insights** — SerpApiProvider, daily insight run, history backfill, price level badge, price-over-time chart (collapsed by default), sparkline on dashboard.
 5. **Alerts** — `evaluateAlerts` with tests, cooldown, Resend email templates in both languages, latest-alert banner, alert rules form on detail page.
-6. **Polish** — loading/empty/error states, phone layout, purge job for soft-deleted watches older than 7 days, "checks used this month" tile.
+6. **Travel log** — `trips` + `trip_segments` migration and RLS; Trips page (Upcoming / Past / Stats), trip detail, manual "Add trip", "I booked this" dialog from the watch detail page, price watch after booking (scheduler keeps checking until departure; rebook alert rule), "next trip" card on the dashboard. UI can start early with mock data; wiring to watches waits for phases 3–5. *Done when:* booking a watch creates a trip with savings shown, a manual trip appears in Past with correct miles, and stats match the trips, in both languages.
+7. **Polish** — loading/empty/error states, phone layout, purge job for soft-deleted watches and trips older than 7 days, "checks used this month" tile.
 
 ## 9. Later (don't build yet, don't block it)
 
 - Award/mileage search via a third provider (Seats.aero API is for non-commercial use unless you have a written agreement — check terms before building).
 - LINE / Telegram / web push notifications.
+- Travel log extras: import bookings by forwarding confirmation emails, flight status on the day of travel, calendar (.ics) export, route map on the Stats tab.
 - Multi-user product concerns: plans, per-user quotas, Terms/Privacy pages.
 
 ## 10. Environment variables

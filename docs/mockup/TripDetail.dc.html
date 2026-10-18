@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Taipei for New Year</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#174A94}a:hover{color:#0E2F62}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F3F4F1; color: #14202B; font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.5">
+  <header style="background: #14202B; color: #F3F4F1">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l8-3 4-9 2 1-2 8 6-2 2 2-18 6z"></path><path d="M3 21h18"></path></svg>
+        <span>Flight Watch</span>
+        <span role="group" aria-label="Language 語言" style="margin-left: 12px; display: inline-flex; border: 1px solid #4A5B6C; border-radius: 999px; overflow: hidden; font-size: 13px; font-weight: 600"><a href="TripDetailZh.dc.html" lang="zh-Hant-TW" style="padding: 6px 12px; color: #C9D1D9; text-decoration: none">中文</a><a href="#" aria-current="true" style="padding: 6px 12px; background: #E8A33D; color: #14202B; text-decoration: none">EN</a></span>
+      </div>
+      <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 4px">
+        <a href="Main.dc.html" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Watches</a>
+        <a href="Trips.dc.html" style="color: #FFFFFF; text-decoration: none; padding: 10px 14px; border-radius: 8px; background: #26374A; font-weight: 600">Trips</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Alerts</a>
+        <a href="#" style="color: #C9D1D9; text-decoration: none; padding: 10px 14px; border-radius: 8px">Settings</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 24px 32px 48px; display: flex; flex-direction: column; gap: 24px">
+    <a href="Trips.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 500; padding: 8px 0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      All trips
+    </a>
+
+    <section style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between">
+      <div style="min-width: 0">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px">
+          <span style="font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: #DCE8FA; color: #174A94">Booked · upcoming</span>
+          <span style="font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: #E6E8E3; color: #3D4650">From a watch</span>
+        </div>
+        <h1 style="margin: 0; font-size: 32px; line-height: 1.15; letter-spacing: -0.02em">Taipei for New Year</h1>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; margin-top: 4px">SFO ⇄ TPE · Dec 18 → Jan 3 · 16 nights</div>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 8px">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 44px; font-weight: 600; line-height: 1; color: #A8530F">66</span>
+        <span style="color: #4F5B66">days to go</span>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+      <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+        <section aria-labelledby="flights-h" style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 24px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px">
+            <h2 id="flights-h" style="margin: 0; font-size: 20px">Flights</h2>
+            <button type="button" style="font: inherit; font-weight: 600; min-height: 44px; padding: 8px 14px; border-radius: 8px; border: 1px solid #C4CAC4; background: #FFFFFF; color: #14202B; cursor: pointer">+ Add flight</button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <sc-for list="{{ flights }}" as="f" hint-placeholder-count="2">
+              <div style="border: 1px solid #EEF0EC; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 14px">
+                  <span style="font-weight: 700">{{ f.dir }} · {{ f.date }}</span>
+                  <span style="color: #4F5B66">{{ f.airline }} <span style="font-family: 'IBM Plex Mono', monospace">{{ f.number }}</span> · {{ f.aircraft }}</span>
+                </div>
+                <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px">
+                  <div>
+                    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; line-height: 1.1">{{ f.depTime }}</div>
+                    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px">{{ f.from }}</div>
+                    <div style="font-size: 13px; color: #4F5B66">{{ f.fromCity }}</div>
+                  </div>
+                  <div style="text-align: center; color: #4F5B66; font-size: 13px; min-width: 120px">
+                    <div>{{ f.duration }}</div>
+                    <div style="height: 2px; background: #C4CAC4; margin: 6px 0; position: relative"></div>
+                    <div>Nonstop</div>
+                  </div>
+                  <div style="text-align: right">
+                    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; line-height: 1.1">{{ f.arrTime }}<span style="font-size: 14px; color: #A8530F">{{ f.plus }}</span></div>
+                    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px">{{ f.to }}</div>
+                    <div style="font-size: 13px; color: #4F5B66">{{ f.toCity }}</div>
+                  </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                  <span style="font-size: 12px; padding: 3px 8px; border-radius: 999px; background: #EEF0EC">Economy</span>
+                  <span style="font-size: 12px; padding: 3px 8px; border-radius: 999px; background: #EEF0EC">Seat {{ f.seat }}</span>
+                  <span style="font-size: 12px; padding: 3px 8px; border-radius: 999px; background: #EEF0EC; font-family: 'IBM Plex Mono', monospace">{{ f.miles }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <section aria-labelledby="notes-h" style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 8px">
+          <label id="notes-h" for="notes" style="font-size: 20px; font-weight: 700">Notes</label>
+          <textarea id="notes" rows="3" defaultValue="Family dinner on Dec 31. Pick up gifts at the airport." style="font: inherit; padding: 12px; border: 1px solid #C4CAC4; border-radius: 8px; resize: vertical"></textarea>
+        </section>
+      </div>
+
+      <aside style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 24px">
+        <section aria-labelledby="booking-h" style="background: #FFFFFF; border: 1px solid #DDE1DC; border-radius: 14px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px">
+          <h2 id="booking-h" style="margin: 0; font-size: 20px">Booking</h2>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 34px; font-weight: 600; line-height: 1">$812</div>
+          <div style="font-size: 14px; color: #4F5B66">paid · round trip · 1 adult</div>
+          <div style="background: #DCE8FA; color: #0E2F62; border-radius: 10px; padding: 10px 12px; font-size: 14px"><strong>Saved $220</strong> vs. the first price seen ($1,032 on Sep 13)</div>
+          <dl style="margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; font-size: 14px">
+            <dt style="color: #4F5B66">Booked</dt><dd style="margin: 0">Oct 13 · airline website</dd>
+            <dt style="color: #4F5B66">Confirmation</dt>
+            <dd style="margin: 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+              <span style="font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.08em">{{ code }}</span>
+              <button type="button" onClick="{{ toggleCode }}" aria-pressed="{{ codePressed }}" style="font: inherit; font-size: 13px; font-weight: 600; min-height: 32px; padding: 4px 10px; border-radius: 6px; border: 1px solid #C4CAC4; background: #FFFFFF; color: #14202B; cursor: pointer">{{ codeBtn }}</button>
+            </dd>
+            <dt style="color: #4F5B66">Miles to</dt><dd style="margin: 0">United MileagePlus · 12,900 entered</dd>
+          </dl>
+        </section>
+
+        <section aria-labelledby="watch-h" style="background: #14202B; color: #F3F4F1; border-radius: 14px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+            <h2 id="watch-h" style="margin: 0; font-size: 18px">Price after booking</h2>
+            <button type="button" role="switch" aria-checked="{{ watchingStr }}" aria-label="Keep watching this price" onClick="{{ toggleWatch }}" style="{{ switchStyle }}"><span style="{{ knobStyle }}"></span></button>
+          </div>
+          <sc-if value="{{ watching }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600">$798</span>
+                <span style="color: #8DB8F5; font-weight: 600">$14 below what you paid</span>
+              </div>
+              <div style="font-size: 13px; color: #C9D1D9">Checked 2 h ago. We'll email you if it drops $50 or more below $812. Some fares let you rebook or get a credit; check your fare rules.</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ notWatching }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size: 13px; color: #C9D1D9">Not watching. Turn on to get an email if this trip gets cheaper after you booked.</div>
+          </sc-if>
+          <a href="WatchDetail.dc.html" style="color: #8DB8F5; font-size: 14px; font-weight: 600">See the watch and price history</a>
+        </section>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <button type="button" style="font: inherit; font-weight: 600; min-height: 44px; padding: 8px 16px; border-radius: 8px; border: 1px solid #C4CAC4; background: #FFFFFF; color: #14202B; cursor: pointer">Edit trip</button>
+          <button type="button" style="font: inherit; font-weight: 600; min-height: 44px; padding: 8px 16px; border-radius: 8px; border: 1px solid #C4CAC4; background: #FFFFFF; color: #14202B; cursor: pointer">Mark cancelled</button>
+          <button type="button" style="font: inherit; font-weight: 600; min-height: 44px; padding: 8px 16px; border-radius: 8px; border: 1px solid #E3C4C4; background: #FFFFFF; color: #9A2B2B; cursor: pointer">Delete</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { watching: true, showCode: false };
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    return {
+      flights: [
+        { dir: 'Outbound', date: 'Fri Dec 18', airline: 'EVA Air', number: 'BR 17', aircraft: 'Boeing 777', depTime: '01:20', from: 'SFO', fromCity: 'San Francisco', arrTime: '06:25', plus: ' +1', to: 'TPE', toCity: 'Taipei Taoyuan', duration: '13 h 05 m', seat: '52A', miles: '6,450 mi' },
+        { dir: 'Return', date: 'Sun Jan 3', airline: 'EVA Air', number: 'BR 18', aircraft: 'Boeing 777', depTime: '23:40', from: 'TPE', fromCity: 'Taipei Taoyuan', arrTime: '19:15', plus: '', to: 'SFO', toCity: 'San Francisco', duration: '11 h 35 m', seat: '51K', miles: '6,450 mi' }
+      ],
+      code: s.showCode ? 'K7Q2XM' : 'K7••••',
+      codeBtn: s.showCode ? 'Hide' : 'Show',
+      codePressed: s.showCode ? 'true' : 'false',
+      toggleCode: function () { self.setState({ showCode: !s.showCode }); },
+      watching: s.watching, notWatching: !s.watching,
+      watchingStr: s.watching ? 'true' : 'false',
+      toggleWatch: function () { self.setState({ watching: !s.watching }); },
+      switchStyle: 'flex: 0 0 auto; width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; cursor: pointer; display: flex; justify-content: ' + (s.watching ? 'flex-end' : 'flex-start') + '; background: ' + (s.watching ? '#E8A33D' : '#4A5B6C'),
+      knobStyle: 'width: 24px; height: 24px; border-radius: 999px; background: #FFFFFF; display: block'
+    };
+  }
+}
+</script>
+</body>
+</html>
